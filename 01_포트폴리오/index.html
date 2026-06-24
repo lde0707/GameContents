@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game QA Portfolio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #080808;
+      --bg2:     #111111;
+      --bg3:     #1a1a1a;
+      --surface: #222222;
+      --border:  #2d2d2d;
+      --border2: #3a3a3a;
+      --text:    #f0f0f0;
+      --muted:   #888888;
+      --dim:     #4a4a4a;
+      --white:   #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--dim);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 56px 56px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 30%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.025) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 960px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 99px;
+      padding: 7px 18px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 40px;
+    }
+
+    .hero-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #9ca3af;
+      flex-shrink: 0;
+    }
+
+    .hero-role {
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .hero-title-sub {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--dim);
+      margin-bottom: 40px;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.9;
+      margin-bottom: 48px;
+    }
+
+    .hero-desc strong { color: var(--text); font-weight: 600; }
+
+    .hero-chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      padding: 8px 20px;
+      border-radius: 99px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── SECTION BASE ─── */
+    .section-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 96px 56px;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 52px;
+    }
+
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .about-body {
+      font-size: 0.97rem;
+      color: var(--muted);
+      line-height: 1.95;
+    }
+
+    .about-body strong { color: var(--text); font-weight: 600; }
+
+    .about-quote {
+      margin: 28px 0;
+      padding: 20px 24px;
+      border-left: 2px solid var(--border2);
+      font-size: 1rem;
+      color: var(--text);
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .stat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .stat-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      transition: border-color 0.2s;
+    }
+
+    .stat-card:hover { border-color: var(--border2); }
+
+    .stat-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 5px;
+    }
+
+    .stat-value {
+      font-size: 0.92rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ─── SKILLS ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .skill-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: default;
+    }
+
+    .skill-card:hover {
+      border-color: var(--border2);
+      background: var(--bg3);
+    }
+
+    .skill-icon { font-size: 1.4rem; margin-bottom: 14px; }
+
+    .skill-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .skill-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .skill-level {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--dim);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 3px 10px;
+      text-transform: uppercase;
+    }
+
+    /* ─── PROJECTS ─── */
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      transition: border-color 0.2s;
+    }
+
+    .project-card:hover { border-color: var(--border2); }
+
+    .project-header {
+      padding: 32px 40px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .badge-live {
+      background: #051a0e;
+      color: #6ee7b7;
+      border: 1px solid #0d3a20;
+    }
+
+    .badge-live::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #6ee7b7;
+    }
+
+    .badge-wip {
+      background: #1a1500;
+      color: #fbbf24;
+      border: 1px solid #3a3000;
+    }
+
+    .badge-wip::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fbbf24;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    .project-name {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .project-sub { font-size: 0.85rem; color: var(--muted); }
+
+    .project-body {
+      padding: 32px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .proj-section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 10px;
+    }
+
+    .project-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .project-text strong { color: var(--text); }
+
+    .role-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .role-chip {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      font-size: 0.77rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    .project-footer {
+      padding: 18px 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.83rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .proj-link:hover { color: var(--white); }
+
+    /* ─── TIMELINE ─── */
+    .timeline {
+      padding-left: 28px;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 10px;
+      bottom: 10px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .tl-item {
+      position: relative;
+      padding-bottom: 44px;
+    }
+
+    .tl-item:last-child { padding-bottom: 0; }
+
+    .tl-dot {
+      position: absolute;
+      left: -28px;
+      top: 7px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--bg2);
+      border: 2px solid var(--border2);
+    }
+
+    .tl-period {
+      font-size: 0.72rem;
+      color: var(--dim);
+      letter-spacing: 0.04em;
+      margin-bottom: 5px;
+    }
+
+    .tl-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+
+    .tl-org {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .tl-desc {
+      font-size: 0.83rem;
+      color: var(--dim);
+      line-height: 1.7;
+    }
+
+    /* ─── CERTS ─── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .cert-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 26px;
+      transition: border-color 0.2s;
+    }
+
+    .cert-card:hover { border-color: var(--border2); }
+
+    .cert-icon { font-size: 1.3rem; margin-bottom: 14px; }
+
+    .cert-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .cert-org { font-size: 0.76rem; color: var(--dim); }
+
+    .cert-status {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: 99px;
+      text-transform: uppercase;
+    }
+
+    .status-done {
+      background: #051a0e;
+      color: #6ee7b7;
+      border: 1px solid #0d3a20;
+    }
+
+    .status-plan {
+      background: #1a1500;
+      color: #fbbf24;
+      border: 1px solid #3a3000;
+    }
+
+    /* ─── PHILOSOPHY ─── */
+    .phil-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .phil-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 30px;
+      transition: border-color 0.2s;
+    }
+
+    .phil-card:hover { border-color: var(--border2); }
+
+    .phil-num {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--surface);
+      line-height: 1;
+      margin-bottom: 14px;
+      letter-spacing: -0.04em;
+    }
+
+    .phil-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .phil-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 96px 56px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-glow {
+      position: absolute;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .footer-msg {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      text-decoration: none;
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: border-color 0.2s, color 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-btn:hover { border-color: #666; color: var(--white); }
+
+    .footer-copy {
+      margin-top: 56px;
+      font-size: 0.72rem;
+      color: var(--dim);
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── FADE-IN ─── */
+    .fi {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fi.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fi-delay-1 { transition-delay: 0.1s; }
+    .fi-delay-2 { transition-delay: 0.2s; }
+    .fi-delay-3 { transition-delay: 0.3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      #hero { padding: 80px 24px 64px; }
+      .section-wrap { padding: 72px 24px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .project-body { grid-template-columns: 1fr; }
+      .phil-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .project-header, .project-body, .project-footer { padding-left: 24px; padding-right: 24px; }
+      footer { padding: 72px 24px 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">PORTFOLIO</div>
+  <ul class="nav-links">
+    <li><a href="#about">소개</a></li>
+    <li><a href="#skills">기술</a></li>
+    <li><a href="#projects">프로젝트</a></li>
+    <li><a href="#experience">경험</a></li>
+    <li><a href="#certs">자격증</a></li>
+    <li><a href="#philosophy">철학</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-tag fi fi-delay-1">
+      <span class="hero-tag-dot"></span>
+      유한대학교 게임콘텐츠전공 3학년 · 졸업 예정
+    </div>
+    <p class="hero-role fi fi-delay-1">Game QA Engineer</p>
+    <h1 class="hero-title fi fi-delay-2">씩씩하고</h1>
+    <h1 class="hero-title-sub fi fi-delay-2">현명하게.</h1>
+    <p class="hero-desc fi fi-delay-3">
+      <strong>기록하고 결함을 찾는 데 강한 사람</strong>입니다.<br>
+      플레이어의 눈으로 허점을 찾아내고, 같은 문제가 두 번 발생하지 않도록
+      만드는 QA 테스터를 목표로 하고 있습니다.
+    </p>
+    <div class="hero-chips fi fi-delay-3">
+      <span class="chip">씩씩한</span>
+      <span class="chip">현명한</span>
+      <span class="chip">착한</span>
+      <span class="chip">논리적</span>
+      <span class="chip">완벽주의</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<div class="section-wrap" id="about">
+  <div class="fi">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">저는 이런 사람입니다</h2>
+  </div>
+  <div class="about-grid fi fi-delay-1">
+    <div>
+      <div class="about-body">
+        게임 개발 프로젝트를 직접 경험하면서 <strong>결함을 찾고 기록하는 일</strong>이
+        저와 잘 맞는다는 걸 알게 됐습니다. 스토브 인디에 게임을 출시하고 라이브 서비스까지
+        운영하며 QA 테스팅을 직접 담당했고, 그 경험이 제 방향을 명확하게 해줬습니다.
+        <br><br>
+        팀 내 의견 충돌이 생겼을 때도 감정보다 <strong>객관적인 판단</strong>을 우선시하며
+        양쪽 의견을 중재했고, 그 과정에서 소통과 기획의 중요성을 다시 한번 체감했습니다.
+        <br><br>
+        완벽주의적인 성향 때문에 하나를 하면 쉽게 넘기지 않는 편입니다. 그 꼼꼼함이
+        QA에서 강점이 될 수 있다고 생각합니다.
+      </div>
+      <blockquote class="about-quote">
+        "객관적인 판단이 뛰어나고, 하나를 시키면 두 개를 할 줄 아는 성실한 사람"
+      </blockquote>
+      <div class="about-body">
+        주변에서는 착하다, 열심히 한다, 공부 잘한다는 말을 자주 듣습니다.
+        스트레스를 크게 받지 않는 편이고, 새로운 환경에도 빠르게 적응합니다.
+        피드백은 겸허히 받아들이고, 그것이 성장의 발판이 된다고 믿습니다.
+      </div>
+    </div>
+    <div class="stat-list">
+      <div class="stat-card">
+        <div class="stat-label">현재 상태</div>
+        <div class="stat-value">유한대학교 게임콘텐츠전공 3학년</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">목표 직무</div>
+        <div class="stat-value">게임 QA 테스터</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">관심 기업</div>
+        <div class="stat-value">NC소프트 · 스마일게이트 · 컴투스</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">작업 스타일</div>
+        <div class="stat-value">팀 작업 선호 · 논리적 문제해결</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">공부 방식</div>
+        <div class="stat-value">책 · 유튜브 · AI 활용 · 꾸준한 공부</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">배우고 싶은 것</div>
+        <div class="stat-value">Unreal Engine · 실무 QA 프로세스</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<div class="section-wrap" id="skills">
+  <div class="fi">
+    <p class="section-label">Skills</p>
+    <h2 class="section-title">기술 스택 & 역량</h2>
+  </div>
+  <div class="skills-grid fi fi-delay-1">
+    <div class="skill-card">
+      <div class="skill-icon">🎮</div>
+      <div class="skill-name">Unity</div>
+      <div class="skill-desc">실제 게임 제작에 활용한 주력 엔진. 팀 프로젝트에서 스토브 인디 출시까지.</div>
+      <span class="skill-level">주력 · 중급</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌿</div>
+      <div class="skill-name">Git / GitHub</div>
+      <div class="skill-desc">1년간 사용. 기본 기능 전반 활용 가능. 꾸준한 커밋 습관.</div>
+      <span class="skill-level">중급</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">Figma</div>
+      <div class="skill-desc">앱 프로토타입 제작 경험. UI/UX 흐름 설계 가능.</div>
+      <span class="skill-level">초·중급</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📋</div>
+      <div class="skill-name">게임 시스템 기획</div>
+      <div class="skill-desc">팀 프로젝트 기획 파트 직접 담당. 기획서 작성 및 시스템 설계 경험.</div>
+      <span class="skill-level">실무 경험</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔍</div>
+      <div class="skill-name">QA 테스팅</div>
+      <div class="skill-desc">출시 프로젝트에서 QA 테스팅 담당. 결함 탐지 및 리포팅 경험.</div>
+      <span class="skill-level">실무 경험</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔊</div>
+      <div class="skill-name">사운드 시스템</div>
+      <div class="skill-desc">Unity 기반 사운드 시스템 직접 설계 및 제작.</div>
+      <span class="skill-level">실무 경험</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<div class="section-wrap" id="projects">
+  <div class="fi">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">프로젝트</h2>
+  </div>
+
+  <!-- Project 1 -->
+  <div class="project-card fi fi-delay-1">
+    <div class="project-header">
+      <span class="project-badge badge-live">LIVE</span>
+      <div class="project-name">진주 도둑들</div>
+      <div class="project-sub">스토브 인디 출시 완료 · 라이브 서비스 운영 · 팀 프로젝트 (4인)</div>
+    </div>
+    <div class="project-body">
+      <div>
+        <div class="proj-section-label">프로젝트 소개</div>
+        <p class="project-text">
+          전쟁시대와 냥코대전쟁을 모티브로 한 디펜스 장르 게임.
+          팀원 4명과 함께 기획부터 개발, QA, 출시, 라이브 서비스까지
+          전 과정을 직접 경험한 완성 프로젝트입니다.
+          스토브 인디 플랫폼에서 실제 서비스를 운영했습니다.
+        </p>
+        <div style="margin-top: 24px;">
+          <div class="proj-section-label">배운 점</div>
+          <p class="project-text">
+            팀원 간 의견 마찰을 객관적으로 중재하면서
+            <strong>협업·소통·기획서의 중요성</strong>을 몸으로 배웠습니다.
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="proj-section-label">담당 역할</div>
+        <div class="role-chips">
+          <span class="role-chip">시스템 기획</span>
+          <span class="role-chip">사운드 시스템 제작</span>
+          <span class="role-chip">QA 테스팅</span>
+        </div>
+        <div style="margin-top: 24px;">
+          <div class="proj-section-label">가장 어려웠던 점</div>
+          <p class="project-text">
+            초반 기획 방향을 놓고 팀원 간 의견이 갈렸습니다.
+            감정적으로 대응하지 않고 양쪽 의견을 객관적으로 청취한 뒤
+            서로 양보하면서 방향을 맞춰나갔습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="project-footer">
+      <a href="https://store.onstove.com/ko/games/104688" target="_blank" rel="noopener noreferrer" class="proj-link">
+        ↗ 스토브 인디에서 보기
+      </a>
+    </div>
+  </div>
+
+  <!-- Project 2 -->
+  <div class="project-card fi fi-delay-2">
+    <div class="project-header">
+      <span class="project-badge badge-wip">IN PROGRESS</span>
+      <div class="project-name">창동 프로젝트</div>
+      <div class="project-sub">Steam 출시 목표 · 현재 개발 중</div>
+    </div>
+    <div class="project-body">
+      <div>
+        <div class="proj-section-label">프로젝트 소개</div>
+        <p class="project-text">
+          이전 프로젝트의 경험을 바탕으로 더 높은 퀄리티를 목표로 하는 차기작입니다.
+          Steam 플랫폼 출시를 목표로 현재 개발을 진행 중입니다.
+        </p>
+      </div>
+      <div>
+        <div class="proj-section-label">목표</div>
+        <p class="project-text">
+          Steam 출시 · 상용화 수준의 게임 퀄리티 달성
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<div class="section-wrap" id="experience">
+  <div class="fi">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">경험 & 활동</h2>
+  </div>
+  <div class="timeline fi fi-delay-1">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">재학 중 · 현재</div>
+      <div class="tl-title">게임콘텐츠전공 집행부 총무부장</div>
+      <div class="tl-org">유한대학교</div>
+      <div class="tl-desc">전공 집행부 총무부장으로서 조직 운영 및 행정 업무 총괄.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">1학년</div>
+      <div class="tl-title">전공 동아리 — C언어 학습</div>
+      <div class="tl-org">유한대학교</div>
+      <div class="tl-desc">전공 동아리에서 C언어 기초를 학습하며 프로그래밍의 기반을 다짐.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">약 1년</div>
+      <div class="tl-title">PC방 매장관리 아르바이트</div>
+      <div class="tl-org">PC방</div>
+      <div class="tl-desc">매장 운영 전반과 고객 응대를 담당하며 현장 운영 감각을 익힘.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- CERTS -->
+<div class="section-wrap" id="certs">
+  <div class="fi">
+    <p class="section-label">Certificates</p>
+    <h2 class="section-title">자격증</h2>
+  </div>
+  <div class="cert-grid fi fi-delay-1">
+    <div class="cert-card">
+      <div class="cert-icon">📊</div>
+      <div class="cert-name">컴퓨터활용능력</div>
+      <div class="cert-org">대한상공회의소</div>
+      <span class="cert-status status-done">취득 완료</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">💻</div>
+      <div class="cert-name">ITQ</div>
+      <div class="cert-org">한국생산성본부</div>
+      <span class="cert-status status-done">취득 완료</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🗄️</div>
+      <div class="cert-name">SQLD</div>
+      <div class="cert-org">한국데이터산업진흥원</div>
+      <span class="cert-status status-plan">취득 예정</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PHILOSOPHY -->
+<div class="section-wrap" id="philosophy">
+  <div class="fi">
+    <p class="section-label">Philosophy</p>
+    <h2 class="section-title">QA 철학</h2>
+  </div>
+  <div class="phil-grid fi fi-delay-1">
+    <div class="phil-card">
+      <div class="phil-num">01</div>
+      <div class="phil-title">같은 문제는 두 번 없게</div>
+      <div class="phil-desc">
+        QA에서 가장 중요한 가치는 꼼꼼함입니다.
+        한 번 발견된 결함은 원인을 파악하고 재발하지 않도록 만드는 것이
+        진짜 QA의 역할입니다.
+      </div>
+    </div>
+    <div class="phil-card">
+      <div class="phil-num">02</div>
+      <div class="phil-title">플레이어의 눈으로</div>
+      <div class="phil-desc">
+        좋은 QA는 개발자가 미처 보지 못한 허점을 플레이어 입장에서
+        찾아내는 것입니다. 사용자 관점이 핵심입니다.
+      </div>
+    </div>
+    <div class="phil-card">
+      <div class="phil-num">03</div>
+      <div class="phil-title">소통이 품질을 만든다</div>
+      <div class="phil-desc">
+        프로젝트 경험에서 실패의 원인도 성공의 열쇠도 소통이었습니다.
+        개발팀과 명확하게 소통하며 결함을 전달하는 능력이 중요합니다.
+      </div>
+    </div>
+    <div class="phil-card">
+      <div class="phil-num">04</div>
+      <div class="phil-title">논리로 분석, 객관적으로 판단</div>
+      <div class="phil-desc">
+        감정보다 논리와 데이터를 기반으로 문제를 분석합니다.
+        팀 내 갈등 상황에서도 객관적 판단을 유지하려 노력합니다.
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-glow"></div>
+  <div class="footer-msg fi">면접 한 번만 봐주세요.</div>
+  <p class="footer-sub fi fi-delay-1">저를 직접 만나보시면 더 잘 알 수 있을 것 같습니다.</p>
+  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-btn fi fi-delay-2">
+    GitHub 바로가기 →
+  </a>
+  <p class="footer-copy">© 2025 Game QA Portfolio</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fi').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
