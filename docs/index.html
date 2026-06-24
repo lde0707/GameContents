@@ -265,53 +265,96 @@
     }
 
     /* ─── SKILLS ─── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+    .skills-category-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin: 28px 0 10px;
     }
 
-    .skill-card {
+    .skills-category-label:first-child { margin-top: 0; }
+
+    .skill-row {
       background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 24px;
-      transition: border-color 0.2s, background 0.2s;
-      cursor: default;
+      padding: 18px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 10px;
+      transition: border-color 0.2s;
     }
 
-    .skill-card:hover {
-      border-color: var(--border2);
-      background: var(--bg3);
-    }
+    .skill-row:last-child { margin-bottom: 0; }
+    .skill-row:hover { border-color: var(--border2); }
 
-    .skill-icon { font-size: 1.4rem; margin-bottom: 14px; }
+    .skill-meta { display: flex; align-items: center; gap: 14px; }
+
+    .skill-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      width: 32px;
+      text-align: center;
+    }
 
     .skill-name {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 700;
       color: var(--white);
-      margin-bottom: 6px;
+      margin-bottom: 3px;
     }
 
     .skill-desc {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    .skill-level {
-      display: inline-block;
-      margin-top: 14px;
-      font-size: 0.68rem;
+    .skill-gauge { display: flex; flex-direction: column; gap: 7px; }
+
+    .skill-gauge-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .skill-tag {
+      font-size: 0.66rem;
       font-weight: 700;
       letter-spacing: 0.06em;
       color: var(--dim);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 99px;
-      padding: 3px 10px;
       text-transform: uppercase;
+    }
+
+    .skill-pct {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    .gauge-track {
+      width: 100%;
+      height: 4px;
+      background: var(--surface);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .gauge-fill {
+      height: 100%;
+      border-radius: 99px;
+      width: 0%;
+      background: #d4d4d4;
+      transition: width 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gauge-fill.qa {
+      background: linear-gradient(90deg, #9ca3af, #ffffff);
     }
 
     /* ─── PROJECTS ─── */
@@ -806,42 +849,128 @@
     <p class="section-label">Skills</p>
     <h2 class="section-title">기술 스택 & 역량</h2>
   </div>
-  <div class="skills-grid fi fi-delay-1">
-    <div class="skill-card">
-      <div class="skill-icon">🎮</div>
-      <div class="skill-name">Unity</div>
-      <div class="skill-desc">실제 게임 제작에 활용한 주력 엔진. 팀 프로젝트에서 스토브 인디 출시까지.</div>
-      <span class="skill-level">주력 · 중급</span>
+  <div class="fi fi-delay-1">
+    <p class="skills-category-label">QA / 테스트</p>
+
+    <div class="skill-row">
+      <div class="skill-meta">
+        <span class="skill-icon">🔍</span>
+        <div>
+          <div class="skill-name">QA 테스팅</div>
+          <div class="skill-desc">출시 프로젝트에서 직접 담당. 결함 탐지 및 리포팅 실무 경험.</div>
+        </div>
+      </div>
+      <div class="skill-gauge">
+        <div class="skill-gauge-header">
+          <span class="skill-tag">실무 경험</span>
+          <span class="skill-pct">90%</span>
+        </div>
+        <div class="gauge-track"><div class="gauge-fill qa" data-width="90"></div></div>
+      </div>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">🌿</div>
-      <div class="skill-name">Git / GitHub</div>
-      <div class="skill-desc">1년간 사용. 기본 기능 전반 활용 가능. 꾸준한 커밋 습관.</div>
-      <span class="skill-level">중급</span>
+
+    <div class="skill-row">
+      <div class="skill-meta">
+        <span class="skill-icon">⚙️</span>
+        <div>
+          <div class="skill-name">자동화 테스트</div>
+          <div class="skill-desc">테스트 자동화 환경 구축 경험. 반복 검증 효율화.</div>
+        </div>
+      </div>
+      <div class="skill-gauge">
+        <div class="skill-gauge-header">
+          <span class="skill-tag">실무 경험</span>
+          <span class="skill-pct">82%</span>
+        </div>
+        <div class="gauge-track"><div class="gauge-fill qa" data-width="82"></div></div>
+      </div>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">🎨</div>
-      <div class="skill-name">Figma</div>
-      <div class="skill-desc">앱 프로토타입 제작 경험. UI/UX 흐름 설계 가능.</div>
-      <span class="skill-level">초·중급</span>
+
+    <p class="skills-category-label">기획 / 개발 / 기타</p>
+
+    <div class="skill-row">
+      <div class="skill-meta">
+        <span class="skill-icon">📋</span>
+        <div>
+          <div class="skill-name">게임 시스템 기획</div>
+          <div class="skill-desc">팀 프로젝트 기획 파트 직접 담당. 기획서 작성 및 시스템 설계.</div>
+        </div>
+      </div>
+      <div class="skill-gauge">
+        <div class="skill-gauge-header">
+          <span class="skill-tag">실무 경험</span>
+          <span class="skill-pct">78%</span>
+        </div>
+        <div class="gauge-track"><div class="gauge-fill" data-width="78"></div></div>
+      </div>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">📋</div>
-      <div class="skill-name">게임 시스템 기획</div>
-      <div class="skill-desc">팀 프로젝트 기획 파트 직접 담당. 기획서 작성 및 시스템 설계 경험.</div>
-      <span class="skill-level">실무 경험</span>
+
+    <div class="skill-row">
+      <div class="skill-meta">
+        <span class="skill-icon">🎮</span>
+        <div>
+          <div class="skill-name">Unity</div>
+          <div class="skill-desc">실제 게임 제작에 활용한 주력 엔진. 스토브 인디 출시까지.</div>
+        </div>
+      </div>
+      <div class="skill-gauge">
+        <div class="skill-gauge-header">
+          <span class="skill-tag">중급</span>
+          <span class="skill-pct">68%</span>
+        </div>
+        <div class="gauge-track"><div class="gauge-fill" data-width="68"></div></div>
+      </div>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">🔍</div>
-      <div class="skill-name">QA 테스팅</div>
-      <div class="skill-desc">출시 프로젝트에서 QA 테스팅 담당. 결함 탐지 및 리포팅 경험.</div>
-      <span class="skill-level">실무 경험</span>
+
+    <div class="skill-row">
+      <div class="skill-meta">
+        <span class="skill-icon">🌿</span>
+        <div>
+          <div class="skill-name">Git / GitHub</div>
+          <div class="skill-desc">1년간 사용. 기본 기능 전반 활용. 꾸준한 커밋 습관.</div>
+        </div>
+      </div>
+      <div class="skill-gauge">
+        <div class="skill-gauge-header">
+          <span class="skill-tag">중급</span>
+          <span class="skill-pct">65%</span>
+        </div>
+        <div class="gauge-track"><div class="gauge-fill" data-width="65"></div></div>
+      </div>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">🔊</div>
-      <div class="skill-name">사운드 시스템</div>
-      <div class="skill-desc">Unity 기반 사운드 시스템 직접 설계 및 제작.</div>
-      <span class="skill-level">실무 경험</span>
+
+    <div class="skill-row">
+      <div class="skill-meta">
+        <span class="skill-icon">🔊</span>
+        <div>
+          <div class="skill-name">사운드 시스템</div>
+          <div class="skill-desc">Unity 기반 사운드 시스템 직접 설계 및 제작.</div>
+        </div>
+      </div>
+      <div class="skill-gauge">
+        <div class="skill-gauge-header">
+          <span class="skill-tag">실무 경험</span>
+          <span class="skill-pct">62%</span>
+        </div>
+        <div class="gauge-track"><div class="gauge-fill" data-width="62"></div></div>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-meta">
+        <span class="skill-icon">🎨</span>
+        <div>
+          <div class="skill-name">Figma</div>
+          <div class="skill-desc">앱 프로토타입 제작 경험. UI/UX 흐름 설계 가능.</div>
+        </div>
+      </div>
+      <div class="skill-gauge">
+        <div class="skill-gauge-header">
+          <span class="skill-tag">초·중급</span>
+          <span class="skill-pct">52%</span>
+        </div>
+        <div class="gauge-track"><div class="gauge-fill" data-width="52"></div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1108,6 +1237,20 @@
   }, { threshold: 0.08 });
 
   document.querySelectorAll('.fi').forEach(el => observer.observe(el));
+
+  // 게이지 애니메이션
+  const gaugeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.gauge-fill[data-width]').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        gaugeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.fi').forEach(el => gaugeObserver.observe(el));
 </script>
 </body>
 </html>
