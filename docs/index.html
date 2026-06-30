@@ -15,8 +15,8 @@
       --border:  #2d2d2d;
       --border2: #3a3a3a;
       --text:    #f0f0f0;
-      --muted:   #888888;
-      --dim:     #4a4a4a;
+      --muted:   #aaaaaa;
+      --dim:     #666666;
       --white:   #ffffff;
     }
 
@@ -193,7 +193,7 @@
     }
 
     .hero-title {
-      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-size: clamp(2.7rem, 5.8vw, 5.5rem);
       font-weight: 900;
       line-height: 0.95;
       letter-spacing: -0.04em;
@@ -202,7 +202,7 @@
     }
 
     .hero-title-sub {
-      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-size: clamp(2.7rem, 5.8vw, 5.5rem);
       font-weight: 900;
       line-height: 0.95;
       letter-spacing: -0.04em;
@@ -473,6 +473,20 @@
       animation: pulse 2s infinite;
     }
 
+    .badge-done {
+      background: #0d0d1a;
+      color: #a5b4fc;
+      border: 1px solid #1e1e3a;
+    }
+
+    .badge-done::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #a5b4fc;
+    }
+
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50%       { opacity: 0.4; }
@@ -526,6 +540,92 @@
       font-weight: 600;
       padding: 4px 12px;
       border-radius: 6px;
+    }
+
+    /* ─── PROJECT KEYWORD LAYOUT ─── */
+    .proj-kw-grid {
+      padding: 24px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .proj-kw-label {
+      font-size: 0.61rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 11px;
+    }
+
+    .proj-kw-list { display: flex; flex-direction: column; gap: 7px; }
+
+    .proj-kw-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .proj-kw-dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--dim);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    .proj-kw-item strong { color: var(--text); font-weight: 600; }
+
+    .proj-insight {
+      padding: 13px 40px;
+      font-size: 0.81rem;
+      color: var(--muted);
+      line-height: 1.6;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .proj-insight::before {
+      content: '💡';
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .proj-insight strong { color: var(--text); font-weight: 600; }
+
+    .proj-tech-row {
+      padding: 13px 40px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .proj-tech-lbl {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-right: 4px;
+    }
+
+    .proj-tech-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 9px;
     }
 
     .project-footer {
@@ -765,6 +865,428 @@
       z-index: 1;
     }
 
+    /* ─── RESEARCH SHOWCASE ─── */
+    .rs-intro {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 560px;
+      margin-bottom: 44px;
+    }
+
+    .rs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .rs-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.22s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rs-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+
+    .rs-card-visual {
+      height: 168px;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      padding: 20px;
+    }
+
+    .rs-card-body {
+      padding: 22px 24px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rs-card-cat {
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 8px;
+    }
+
+    .rs-card-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .rs-card-desc {
+      font-size: 0.81rem;
+      color: var(--muted);
+      line-height: 1.78;
+      flex: 1;
+      margin-bottom: 18px;
+    }
+
+    .rs-card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.79rem;
+      font-weight: 700;
+      color: var(--muted);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.18s, color 0.18s;
+      align-self: flex-start;
+    }
+
+    .rs-card:hover .rs-card-btn { border-color: var(--border2); color: var(--white); }
+
+    /* ── Card Visuals ── */
+    .vis-ai {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .vis-ai-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .vis-ai-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      background: var(--bg2);
+    }
+
+    .vis-ai-lbl {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+
+    .vis-ai-mid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .vis-ai-line { width: 32px; height: 1px; background: var(--border2); }
+
+    .vis-ai-badge {
+      font-size: 0.58rem;
+      font-weight: 700;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      border-radius: 99px;
+      padding: 2px 8px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .vis-kws {
+      position: absolute;
+      bottom: 10px;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      padding: 0 10px;
+      flex-wrap: wrap;
+    }
+
+    .vis-kw-pill {
+      font-size: 0.57rem;
+      font-weight: 700;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 99px;
+      padding: 2px 7px;
+    }
+
+    .vis-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      width: 100%;
+    }
+
+    .vis-bar-row { display: flex; align-items: center; gap: 8px; }
+
+    .vis-bar-lbl {
+      font-size: 0.6rem;
+      color: var(--muted);
+      width: 54px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .vis-bar-track {
+      flex: 1;
+      height: 5px;
+      background: var(--surface);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .vis-bar-fill { height: 100%; border-radius: 99px; background: #c4c4c4; }
+
+    .vis-bar-val {
+      font-size: 0.57rem;
+      color: var(--dim);
+      width: 36px;
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    .vis-flow {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      justify-content: center;
+    }
+
+    .vis-flow-step { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+
+    .vis-flow-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1.5px solid var(--border2);
+    }
+
+    .vis-flow-dot.on { background: #e0e0e0; border-color: #999; }
+
+    .vis-flow-lbl {
+      font-size: 0.52rem;
+      font-weight: 700;
+      color: var(--dim);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .vis-flow-arr { font-size: 0.65rem; color: var(--dim); margin-bottom: 15px; flex-shrink: 0; }
+
+    .vis-severity {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .vis-sev {
+      font-size: 0.57rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 99px;
+      letter-spacing: 0.05em;
+    }
+
+    .vis-sev.c { background:#1a0505; color:#f87171; border:1px solid #3a0a0a; }
+    .vis-sev.m { background:#1a0f00; color:#fb923c; border:1px solid #3a2000; }
+    .vis-sev.n { background:#111500; color:#a3e635; border:1px solid #2a3200; }
+    .vis-sev.i { background:#0a1020; color:#60a5fa; border:1px solid #162040; }
+
+    /* ── Modal ── */
+    .rm-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      backdrop-filter: blur(8px);
+      z-index: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s;
+    }
+
+    .rm-overlay.open { opacity: 1; pointer-events: auto; }
+
+    .rm-modal {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 840px;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(28px) scale(0.98);
+      transition: transform 0.22s;
+    }
+
+    .rm-overlay.open .rm-modal { transform: translateY(0) scale(1); }
+
+    .rm-modal::-webkit-scrollbar { width: 3px; }
+    .rm-modal::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+
+    .rm-head {
+      padding: 26px 30px 22px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .rm-head-icon { font-size: 2rem; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+
+    .rm-head-cat {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 5px;
+    }
+
+    .rm-head-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.025em;
+      line-height: 1.25;
+    }
+
+    .rm-x {
+      margin-left: auto;
+      flex-shrink: 0;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: inherit;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .rm-x:hover { border-color: var(--border2); color: var(--white); }
+
+    .rm-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .rm-col {
+      padding: 24px 26px;
+      border-right: 1px solid var(--border);
+    }
+
+    .rm-col:last-child { border-right: none; }
+
+    .rm-col-icon { font-size: 1.4rem; margin-bottom: 8px; }
+
+    .rm-col-tag {
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 12px;
+    }
+
+    .rm-col-head {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.35;
+      margin-bottom: 14px;
+    }
+
+    .rm-items { display: flex; flex-direction: column; gap: 10px; }
+
+    .rm-item { display: flex; gap: 9px; align-items: flex-start; }
+
+    .rm-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--border2);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .rm-txt {
+      font-size: 0.81rem;
+      color: var(--muted);
+      line-height: 1.78;
+    }
+
+    .rm-txt strong { color: var(--text); font-weight: 600; }
+
+    .rm-foot {
+      padding: 18px 26px;
+      border-top: 1px solid var(--border);
+      background: var(--bg3);
+    }
+
+    .rm-foot-lbl {
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 10px;
+    }
+
+    .rm-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .rm-tag {
+      font-size: 0.74rem;
+      font-weight: 600;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      border-radius: 99px;
+      padding: 4px 12px;
+    }
+
+    @media (max-width: 768px) {
+      .rs-grid { grid-template-columns: 1fr; }
+      .rm-cols { grid-template-columns: 1fr; }
+      .rm-col { border-right: none; border-bottom: 1px solid var(--border); }
+      .rm-col:last-child { border-bottom: none; }
+    }
+
     /* ─── FADE-IN ─── */
     .fi {
       opacity: 0;
@@ -796,6 +1318,8 @@
       .phil-grid { grid-template-columns: 1fr; }
       .cert-grid { grid-template-columns: 1fr; }
       .project-header, .project-body, .project-footer { padding-left: 24px; padding-right: 24px; }
+      .proj-kw-grid { grid-template-columns: 1fr; padding: 20px 24px; gap: 20px; }
+      .proj-insight, .proj-tech-row { padding-left: 24px; padding-right: 24px; }
       footer { padding: 72px 24px 48px; }
     }
   </style>
@@ -812,6 +1336,7 @@
     <li><a href="#experience">경험</a></li>
     <li><a href="#certs">자격증</a></li>
     <li><a href="#philosophy">철학</a></li>
+    <li><a href="#research">리서치</a></li>
   </ul>
 </nav>
 
@@ -827,11 +1352,11 @@
       </div>
       <p class="hero-role fi fi-delay-1">Game QA Engineer</p>
       <h1 class="hero-title fi fi-delay-2">이도언,</h1>
-      <h1 class="hero-title-sub fi fi-delay-2">버그보다 먼저.</h1>
+      <h1 class="hero-title-sub fi fi-delay-2">결함을 잡습니다.</h1>
       <p class="hero-desc fi fi-delay-3">
-        <strong>기록하고 결함을 찾는 데 강한 사람</strong>입니다.<br>
-        플레이어의 눈으로 허점을 찾아내고, 같은 문제가 두 번 발생하지 않도록
-        만드는 QA 테스터를 목표로 하고 있습니다.
+        게임 출시 경험을 가진 QA 지망생입니다.<br>
+        <strong>놓치지 않는 꼼꼼함</strong>과 <strong>논리적 판단력</strong>으로<br>
+        품질을 지킵니다.
       </p>
       <div class="hero-chips fi fi-delay-3">
         <span class="chip">씩씩한</span>
@@ -865,24 +1390,13 @@
   <div class="about-grid fi fi-delay-1">
     <div>
       <div class="about-body">
-        게임 개발 프로젝트를 직접 경험하면서 <strong>결함을 찾고 기록하는 일</strong>이
-        저와 잘 맞는다는 걸 알게 됐습니다. 스토브 인디에 게임을 출시하고 라이브 서비스까지
-        운영하며 QA 테스팅을 직접 담당했고, 그 경험이 제 방향을 명확하게 해줬습니다.
-        <br><br>
-        팀 내 의견 충돌이 생겼을 때도 감정보다 <strong>객관적인 판단</strong>을 우선시하며
-        양쪽 의견을 중재했고, 그 과정에서 소통과 기획의 중요성을 다시 한번 체감했습니다.
-        <br><br>
-        완벽주의적인 성향 때문에 하나를 하면 쉽게 넘기지 않는 편입니다. 그 꼼꼼함이
-        QA에서 강점이 될 수 있다고 생각합니다.
+        게임을 직접 출시하며 <strong>QA 테스팅을 실무로 경험</strong>했습니다.<br><br>
+        완벽주의 성향으로 하나를 끝낼 때까지 놓지 않고, 감정보다 <strong>논리와 객관</strong>으로 판단합니다.
+        주변에서는 "열심히 한다, 꼼꼼하다"는 말을 자주 듣습니다.
       </div>
       <blockquote class="about-quote">
-        "객관적인 판단이 뛰어나고, 하나를 시키면 두 개를 할 줄 아는 성실한 사람"
+        "하나를 시키면 두 개를 할 줄 아는 성실한 사람"
       </blockquote>
-      <div class="about-body">
-        주변에서는 착하다, 열심히 한다, 공부 잘한다는 말을 자주 듣습니다.
-        스트레스를 크게 받지 않는 편이고, 새로운 환경에도 빠르게 적응합니다.
-        피드백은 겸허히 받아들이고, 그것이 성장의 발판이 된다고 믿습니다.
-      </div>
     </div>
     <div class="stat-list">
       <div class="stat-card">
@@ -985,9 +1499,9 @@
       <div class="skill-gauge">
         <div class="skill-gauge-header">
           <span class="skill-tag">실무 경험</span>
-          <span class="skill-pct">85%</span>
+          <span class="skill-pct">75%</span>
         </div>
-        <div class="gauge-track"><div class="gauge-fill" data-width="85"></div></div>
+        <div class="gauge-track"><div class="gauge-fill" data-width="75"></div></div>
       </div>
     </div>
 
@@ -1002,9 +1516,9 @@
       <div class="skill-gauge">
         <div class="skill-gauge-header">
           <span class="skill-tag">중급</span>
-          <span class="skill-pct">83%</span>
+          <span class="skill-pct">60%</span>
         </div>
-        <div class="gauge-track"><div class="gauge-fill" data-width="83"></div></div>
+        <div class="gauge-track"><div class="gauge-fill" data-width="60"></div></div>
       </div>
     </div>
 
@@ -1020,87 +1534,148 @@
     <h2 class="section-title">프로젝트</h2>
   </div>
 
-  <!-- Project 1 -->
-  <!-- Project 1 -->
+  <!-- Project 1: 진주 도둑들 -->
   <div class="project-card fi fi-delay-1">
     <div class="project-header">
       <span class="project-badge badge-live">LIVE</span>
       <div class="project-name">진주 도둑들</div>
       <div class="project-sub">스토브 인디 출시 · 라이브 서비스 운영 · 팀 프로젝트 (4인)</div>
     </div>
-    <div class="project-body">
-      <div>
-        <div class="proj-section-label">QA 역할</div>
-        <p class="project-text">
-          출시 전 전 구간의 품질 검증을 담당했습니다. 기능 동작 테스트, 밸런스 이상 탐지,
-          경계값 시나리오 테스트를 반복 수행하며 결함을 식별하고 재현 절차를 문서화했습니다.
-          라이브 서비스 전환 후에도 지속적인 리그레션 테스트를 통해 품질을 유지했습니다.
-        </p>
-        <div style="margin-top: 24px;">
-          <div class="proj-section-label">QA 성과</div>
-          <p class="project-text">
-            출시 전 주요 크래시 버그 및 게임 진행 불가 결함을 사전 탐지해
-            <strong>안정적인 라이브 서비스</strong>로 이어지는 데 기여했습니다.
-          </p>
+    <div class="proj-kw-grid">
+      <div class="proj-kw-block">
+        <div class="proj-kw-label">무엇을 했나</div>
+        <div class="proj-kw-list">
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>기능 동작 테스트 전 구간 담당</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>밸런스 이상 탐지 · 경계값 시나리오</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>버그 재현 절차 문서화</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>출시 후 리그레션 테스트 지속</div>
         </div>
       </div>
-      <div>
-        <div class="proj-section-label">담당 역할</div>
-        <div class="role-chips">
-          <span class="role-chip">기능 테스트</span>
-          <span class="role-chip">밸런스 검증</span>
-          <span class="role-chip">버그 리포팅</span>
-          <span class="role-chip">리그레션 테스트</span>
-        </div>
-        <div style="margin-top: 24px;">
-          <div class="proj-section-label">배운 점</div>
-          <p class="project-text">
-            개발팀과의 명확한 소통 없이는 결함이 제때 수정되지 않는다는 것을 체감했습니다.
-            <strong>재현 가능한 버그 리포트 작성</strong>이 QA의 핵심임을 배웠습니다.
-          </p>
+      <div class="proj-kw-block">
+        <div class="proj-kw-label">QA 포인트</div>
+        <div class="proj-kw-list">
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span><strong>크래시 버그</strong> 출시 전 사전 탐지</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span><strong>진행 불가 결함</strong> 선제 검출</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>안정적 라이브 서비스 전환에 기여</div>
         </div>
       </div>
     </div>
+    <div class="proj-insight">소통 없이는 결함이 제때 수정되지 않는다 — <strong>재현 가능한 버그 리포트</strong>가 QA의 핵심</div>
     <div class="project-footer">
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <span class="proj-tech-lbl">Stack</span>
+        <span class="proj-tech-tag">Unity</span>
+        <span class="proj-tech-tag">C#</span>
+        <span class="proj-tech-tag">Stove Indie</span>
+      </div>
       <a href="https://store.onstove.com/ko/games/104688" target="_blank" rel="noopener noreferrer" class="proj-link">
         ↗ 스토브 인디에서 보기
       </a>
     </div>
   </div>
 
-  <!-- Project 2 -->
+  <!-- Project 2: NEON Requiem -->
   <div class="project-card fi fi-delay-2">
+    <div class="project-header">
+      <span class="project-badge badge-done">UNITY · 2학년</span>
+      <div class="project-name">NEON Requiem</div>
+      <div class="project-sub">뱀서류 웨이브 디펜스 · 팀 프로젝트 · Unity</div>
+    </div>
+    <div class="proj-kw-grid">
+      <div class="proj-kw-block">
+        <div class="proj-kw-label">무엇을 했나</div>
+        <div class="proj-kw-list">
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>뱀서류 웨이브 디펜스 시스템 설계</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>랜덤 상점 · 무기·능력 구매 로직</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span><strong>COMMON · RARE · EPIC</strong> 등급 체계</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>HP · ATK · DEF · ASR · MOV 스탯 설계</div>
+        </div>
+      </div>
+      <div class="proj-kw-block">
+        <div class="proj-kw-label">QA 포인트</div>
+        <div class="proj-kw-list">
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span><strong>확률 드롭</strong> 밸런스 검증</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>웨이브 난이도 곡선 테스트</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>상점 아이템 중복 이슈 탐지</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>스탯 <strong>경계값</strong> 시나리오</div>
+        </div>
+      </div>
+    </div>
+    <div class="proj-insight">수치상 밸런스와 <strong>플레이어 체감 밸런스</strong>는 다르다 — 반복 플레이 검증 필수</div>
+    <div class="proj-tech-row">
+      <span class="proj-tech-lbl">Stack</span>
+      <span class="proj-tech-tag">Unity</span>
+      <span class="proj-tech-tag">C#</span>
+    </div>
+  </div>
+
+  <!-- Project 3: Lucky Dice -->
+  <div class="project-card fi fi-delay-3">
     <div class="project-header">
       <span class="project-badge badge-wip">BOARD GAME</span>
       <div class="project-name">Lucky Dice</div>
       <div class="project-sub">보드게임 QA 검증 · 규칙 결함 탐지 프로젝트</div>
     </div>
-    <div class="project-body">
-      <div>
-        <div class="proj-section-label">QA 역할</div>
-        <p class="project-text">
-          주사위 기반 보드게임의 기획 단계부터 QA 시각으로 참여했습니다.
-          규칙의 허점과 예외 상황을 사전에 탐색하고, 주사위 확률 시나리오별
-          엣지 케이스를 도출해 문서화했습니다. 플레이어가 실제로 맞닥뜨릴 수 있는
-          비정상 경로를 먼저 찾아내는 것에 집중했습니다.
-        </p>
-      </div>
-      <div>
-        <div class="proj-section-label">담당 역할</div>
-        <div class="role-chips">
-          <span class="role-chip">규칙 결함 탐지</span>
-          <span class="role-chip">엣지 케이스 도출</span>
-          <span class="role-chip">밸런스 검증</span>
-          <span class="role-chip">테스트 시나리오 문서화</span>
-        </div>
-        <div style="margin-top: 24px;">
-          <div class="proj-section-label">배운 점</div>
-          <p class="project-text">
-            디지털 게임과 달리 보드게임은 규칙 자체가 코드이므로,
-            <strong>논리적 허점 하나가 게임 전체를 무너뜨릴 수 있다</strong>는 것을 배웠습니다.
-          </p>
+    <div class="proj-kw-grid">
+      <div class="proj-kw-block">
+        <div class="proj-kw-label">무엇을 했나</div>
+        <div class="proj-kw-list">
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>기획 단계부터 QA 시각으로 참여</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>규칙 허점 · 예외 상황 사전 탐색</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>주사위 확률 시나리오 엣지 케이스 도출</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>비정상 경로 문서화</div>
         </div>
       </div>
+      <div class="proj-kw-block">
+        <div class="proj-kw-label">QA 포인트</div>
+        <div class="proj-kw-list">
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span><strong>규칙 결함</strong> 선제 탐지</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>밸런스 검증 · 엣지 케이스</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>테스트 시나리오 문서화</div>
+        </div>
+      </div>
+    </div>
+    <div class="proj-insight">보드게임은 <strong>규칙 자체가 코드</strong> — 논리 허점 하나가 게임 전체를 무너뜨린다</div>
+    <div class="proj-tech-row">
+      <span class="proj-tech-lbl">Stack</span>
+      <span class="proj-tech-tag">보드게임</span>
+      <span class="proj-tech-tag">규칙 시스템</span>
+      <span class="proj-tech-tag">QA 문서화</span>
+    </div>
+  </div>
+
+  <!-- Project 4: Roblox Tower Defense -->
+  <div class="project-card fi fi-delay-1">
+    <div class="project-header">
+      <span class="project-badge badge-done">ROBLOX · LUA</span>
+      <div class="project-name">Roblox 타워 디펜스</div>
+      <div class="project-sub">Roblox Studio · Lua 스크립팅 · 개인 프로젝트</div>
+    </div>
+    <div class="proj-kw-grid">
+      <div class="proj-kw-block">
+        <div class="proj-kw-label">무엇을 했나</div>
+        <div class="proj-kw-list">
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>Lua 스크립팅 전 과정 단독 구현</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>몬스터 웨이브 스포닝 시스템</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>타워 배치 · 업그레이드 로직</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>골드 자원 관리 · 적 경로 AI</div>
+        </div>
+      </div>
+      <div class="proj-kw-block">
+        <div class="proj-kw-label">QA 포인트</div>
+        <div class="proj-kw-list">
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>타워 <strong>사거리 경계값</strong> 버그 탐지</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>웨이브 타이밍 충돌 · 골드 음수 예외</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>Lua <strong>1-index 오프셋</strong> 오류 발견</div>
+          <div class="proj-kw-item"><span class="proj-kw-dot"></span>개발·QA 동시 수행 경험</div>
+        </div>
+      </div>
+    </div>
+    <div class="proj-insight"><strong>언어마다 버그 패턴이 다르다</strong> — 개발자와 테스터의 시각을 동시에 경험</div>
+    <div class="proj-tech-row">
+      <span class="proj-tech-lbl">Stack</span>
+      <span class="proj-tech-tag">Roblox Studio</span>
+      <span class="proj-tech-tag">Lua</span>
     </div>
   </div>
 </div>
@@ -1231,6 +1806,142 @@
 
 <hr class="divider">
 
+<!-- RESEARCH -->
+<div class="section-wrap" id="research">
+  <div class="fi">
+    <p class="section-label">🔬 Data Research</p>
+    <h2 class="section-title">리서치 &amp;<br>인사이트</h2>
+  </div>
+  <p class="rs-intro fi fi-delay-1">QA는 사용자가 원하는 것을 먼저 이해해야 합니다. 국내 소비트렌드 흐름과 실무 방법론을 직접 조사해 내 포트폴리오와 커리어에 어떻게 연결되는지 정리했습니다.</p>
+  <div class="rs-grid fi fi-delay-1">
+
+    <!-- 카드 1: AI 트렌드 -->
+    <div class="rs-card" onclick="openModal('ai')">
+      <div class="rs-card-visual">
+        <div class="vis-ai">
+          <div class="vis-ai-node">
+            <div class="vis-ai-circle">🤖</div>
+            <div class="vis-ai-lbl">AI</div>
+          </div>
+          <div class="vis-ai-mid">
+            <div class="vis-ai-line"></div>
+            <div class="vis-ai-badge">휴먼인더루프</div>
+            <div class="vis-ai-line"></div>
+          </div>
+          <div class="vis-ai-node">
+            <div class="vis-ai-circle">🧑‍💻</div>
+            <div class="vis-ai-lbl">Human</div>
+          </div>
+        </div>
+        <div class="vis-kws">
+          <span class="vis-kw-pill">AX조직</span>
+          <span class="vis-kw-pill">제로클릭</span>
+          <span class="vis-kw-pill">픽셀라이프</span>
+        </div>
+      </div>
+      <div class="rs-card-body">
+        <div class="rs-card-cat">2026 소비트렌드 · AI 분석</div>
+        <div class="rs-card-title">AI 시대,<br>QA 직군은 어떻게 달라지는가</div>
+        <div class="rs-card-desc">AI가 실무에 스며들면서 QA 엔지니어의 역할 경계가 바뀌고 있습니다. 휴먼인더루프 구조가 QA와 어떻게 맞닿는지 조사했습니다.</div>
+        <button class="rs-card-btn">자세히 보기 →</button>
+      </div>
+    </div>
+
+    <!-- 카드 2: 소비자 트렌드 -->
+    <div class="rs-card" onclick="openModal('trend')">
+      <div class="rs-card-visual">
+        <div class="vis-bars">
+          <div class="vis-bar-row">
+            <div class="vis-bar-lbl">AI 활용</div>
+            <div class="vis-bar-track"><div class="vis-bar-fill" style="width:88%"></div></div>
+            <div class="vis-bar-val">2026 ↑</div>
+          </div>
+          <div class="vis-bar-row">
+            <div class="vis-bar-lbl">감정 케어</div>
+            <div class="vis-bar-track"><div class="vis-bar-fill" style="width:72%"></div></div>
+            <div class="vis-bar-val">필코노미</div>
+          </div>
+          <div class="vis-bar-row">
+            <div class="vis-bar-lbl">자기관리</div>
+            <div class="vis-bar-track"><div class="vis-bar-fill" style="width:80%"></div></div>
+            <div class="vis-bar-val">레디코어</div>
+          </div>
+          <div class="vis-bar-row">
+            <div class="vis-bar-lbl">1인 가구</div>
+            <div class="vis-bar-track"><div class="vis-bar-fill" style="width:65%"></div></div>
+            <div class="vis-bar-val">1.5가구</div>
+          </div>
+          <div class="vis-bar-row">
+            <div class="vis-bar-lbl">가성비</div>
+            <div class="vis-bar-track"><div class="vis-bar-fill" style="width:75%"></div></div>
+            <div class="vis-bar-val">근본이즘</div>
+          </div>
+        </div>
+      </div>
+      <div class="rs-card-body">
+        <div class="rs-card-cat">2025·2026 소비트렌드 · 소비자 분석</div>
+        <div class="rs-card-title">사용자는 지금<br>무엇을 원하는가</div>
+        <div class="rs-card-desc">좋은 QA는 사용자 기대를 먼저 이해합니다. 2025·2026 소비 트렌드를 분석해 테스트 기준과 UX 품질 관점에 연결했습니다.</div>
+        <button class="rs-card-btn">자세히 보기 →</button>
+      </div>
+    </div>
+
+    <!-- 카드 3: 게임 QA 실무 -->
+    <div class="rs-card" onclick="openModal('qa')">
+      <div class="rs-card-visual">
+        <div class="vis-flow">
+          <div class="vis-flow-step">
+            <div class="vis-flow-dot on"></div>
+            <div class="vis-flow-lbl">NEW</div>
+          </div>
+          <div class="vis-flow-arr">→</div>
+          <div class="vis-flow-step">
+            <div class="vis-flow-dot on"></div>
+            <div class="vis-flow-lbl">OPEN</div>
+          </div>
+          <div class="vis-flow-arr">→</div>
+          <div class="vis-flow-step">
+            <div class="vis-flow-dot on"></div>
+            <div class="vis-flow-lbl">FIXED</div>
+          </div>
+          <div class="vis-flow-arr">→</div>
+          <div class="vis-flow-step">
+            <div class="vis-flow-dot"></div>
+            <div class="vis-flow-lbl">VERIFY</div>
+          </div>
+          <div class="vis-flow-arr">→</div>
+          <div class="vis-flow-step">
+            <div class="vis-flow-dot"></div>
+            <div class="vis-flow-lbl">CLOSE</div>
+          </div>
+        </div>
+        <div class="vis-severity">
+          <span class="vis-sev c">CRITICAL</span>
+          <span class="vis-sev m">MAJOR</span>
+          <span class="vis-sev n">MINOR</span>
+          <span class="vis-sev i">INFO</span>
+        </div>
+      </div>
+      <div class="rs-card-body">
+        <div class="rs-card-cat">게임 QA 실무 방법론 · 프로세스 조사</div>
+        <div class="rs-card-title">실무 QA는<br>어떻게 돌아가는가</div>
+        <div class="rs-card-desc">진주 도둑들 프로젝트에서 직접 QA를 담당하며 느낀 한계를 바탕으로, 실무 표준 프로세스와 버그 관리 체계를 조사했습니다.</div>
+        <button class="rs-card-btn">자세히 보기 →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- RESEARCH MODAL -->
+<div class="rm-overlay" id="rmOverlay" onclick="closeModal(event)">
+  <div class="rm-modal" id="rmModal">
+    <div id="rmContent"></div>
+  </div>
+</div>
+
+<hr class="divider">
+
 <!-- FOOTER -->
 <footer id="contact">
   <div class="footer-glow"></div>
@@ -1278,6 +1989,316 @@
   }, { threshold: 0.2 });
 
   document.querySelectorAll('.fi').forEach(el => gaugeObserver.observe(el));
+
+  /* ── 리서치 & 인사이트 모달 ── */
+  var modalData = {
+    ai: {
+      icon: '🤖',
+      cat: '2026 소비트렌드 · AI 트렌드 분석',
+      title: 'AI 시대, QA 직군은 어떻게 달라지는가',
+      cols: [
+        {
+          icon: '🤔',
+          tag: '왜 필요했나',
+          head: 'AI 도입으로 QA 역할의 경계가 바뀌고 있다',
+          items: [
+            '<strong>AX조직(2026)</strong> 트렌드로 AI가 실무에 도입되는 속도가 빨라지고 있음',
+            'QA 엔지니어가 AI를 어떻게 활용하고 어디까지 검증해야 하는지 기준이 필요했음',
+            '취업 목표 기업(NC소프트·스마일게이트)의 AI QA 도입 동향을 먼저 파악하기 위해'
+          ]
+        },
+        {
+          icon: '💡',
+          tag: '도움이 된 것',
+          head: '검증의 의미를 새롭게 이해하다',
+          items: [
+            '<strong>휴먼인더루프</strong> — AI 판단 결과를 사람이 검증하는 구조가 QA 역할과 구조적으로 일치함을 발견',
+            '<strong>제로클릭(2026)</strong> — 즉각 응답 UX 트렌드를 통해 로딩·지연 버그의 품질 기준 구체화',
+            '<strong>픽셀라이프</strong> — 빠르게 변하는 기능 사이클에서 회귀 테스트의 중요성 재확인'
+          ]
+        },
+        {
+          icon: '🎯',
+          tag: '앞으로 할 것',
+          head: '리서치를 실제 스킬로 전환한다',
+          items: [
+            'AI 버그 분류 보조 도구 프로토타입 직접 제작',
+            'AI 생성 콘텐츠의 품질 검증 기준 자체 문서화',
+            '게임사 AI QA 인턴십·공개 과제로 실전 경험 축적'
+          ]
+        }
+      ],
+      tags: ['휴먼인더루프', 'AX조직', '제로클릭', '픽셀라이프', 'AI 테스팅', '회귀 테스트']
+    },
+    trend: {
+      icon: '📊',
+      cat: '2025·2026 소비트렌드 · 소비자 분석',
+      title: '사용자는 지금 무엇을 원하는가',
+      cols: [
+        {
+          icon: '🤔',
+          tag: '왜 필요했나',
+          head: 'QA는 사용자를 먼저 이해해야 한다',
+          items: [
+            'QA의 역할은 <strong>사용자 기대와 제품 동작의 격차를 찾는 것</strong> — 사용자가 무엇을 원하는지 알아야 함',
+            '국내 소비트렌드 보고서를 통해 소비자 욕구를 체계적으로 분석한 자료를 참고함',
+            '내가 테스트할 제품들이 어떤 사용자를 대상으로 하는지 이해하는 기반 확보 목적'
+          ]
+        },
+        {
+          icon: '💡',
+          tag: '도움이 된 것',
+          head: '테스트 기준에 사용자 시각이 생겼다',
+          items: [
+            '<strong>필코노미(2026)</strong> — 감정 충족형 UX에서 감정 피드백 누락을 버그로 인식하는 기준 형성',
+            '<strong>1.5가구·아보하(2025)</strong> — 1인 사용자 시나리오 중심 테스트케이스 작성의 필요성 인식',
+            '<strong>레디코어(2026)</strong> — 자기관리·예방 앱에서 알림·데이터 정확성 버그를 높은 우선순위로 판단'
+          ]
+        },
+        {
+          icon: '🎯',
+          tag: '앞으로 할 것',
+          head: '트렌드 기반 테스트 시나리오를 직접 설계한다',
+          items: [
+            '트렌드 키워드별 사용자 페르소나 작성 → 테스트케이스 연결 실습',
+            '창동 프로젝트 QA에 소비자 트렌드 인사이트 직접 반영',
+            '매년 소비트렌드 흐름을 QA 관점으로 정리하는 루틴화'
+          ]
+        }
+      ],
+      tags: ['필코노미', '1.5가구', '레디코어', '아보하', '픽셀라이프', '사용자 페르소나']
+    },
+    qa: {
+      icon: '🐛',
+      cat: '게임 QA 실무 방법론 · 프로세스 조사',
+      title: '실무 QA는 어떻게 돌아가는가',
+      cols: [
+        {
+          icon: '🤔',
+          tag: '왜 필요했나',
+          head: '직접 해봤지만 체계가 없었다',
+          items: [
+            '진주 도둑들 프로젝트에서 QA를 담당했지만 방법론 없이 감으로 진행했던 한계를 느낌',
+            '취업 목표 직무(게임 QA)에서 요구하는 표준 프로세스와 내 경험의 차이를 파악 필요',
+            'Jira·TestRail 등 실무 도구를 쓰기 전 <strong>버그 라이프사이클</strong>을 먼저 이해하려는 목적'
+          ]
+        },
+        {
+          icon: '💡',
+          tag: '도움이 된 것',
+          head: '버그를 구조로 바라보게 됐다',
+          items: [
+            '<strong>버그 라이프사이클</strong>(NEW→OPEN→FIXED→VERIFY→CLOSE) 체계를 이해하고 직접 적용',
+            '<strong>심각도 분류</strong>(Critical/Major/Minor/Info)로 우선순위를 매기는 실무 기준 습득',
+            'TC ID·사전조건·재현 절차·기대결과 포맷으로 리포팅 방식 개선'
+          ]
+        },
+        {
+          icon: '🎯',
+          tag: '앞으로 할 것',
+          head: '실무 도구와 데이터로 수준을 높인다',
+          items: [
+            'SQLD 취득 후 버그 데이터를 SQL로 분석하는 실습 프로젝트 진행',
+            'Jira·TestRail 퍼블릭 데모 환경에서 실무 워크플로우 직접 경험',
+            '창동 프로젝트에 정식 TC 문서 + 버그 리포트 포함한 QA 산출물 제작'
+          ]
+        }
+      ],
+      tags: ['버그 라이프사이클', 'Critical/Major', '테스트케이스', 'Jira', 'TestRail', 'SQLD']
+    }
+  };
+
+  function openModal(key) {
+    var d = modalData[key];
+    if (!d) return;
+    var html = '<div class="rm-head">' +
+      '<div class="rm-head-icon">' + d.icon + '</div>' +
+      '<div><div class="rm-head-cat">' + d.cat + '</div>' +
+      '<div class="rm-head-title">' + d.title + '</div></div>' +
+      '<button class="rm-x" onclick="closeModalBtn()">✕</button>' +
+      '</div><div class="rm-cols">';
+    d.cols.forEach(function(col) {
+      html += '<div class="rm-col"><div class="rm-col-icon">' + col.icon + '</div>' +
+        '<div class="rm-col-tag">' + col.tag + '</div>' +
+        '<div class="rm-col-head">' + col.head + '</div>' +
+        '<div class="rm-items">';
+      col.items.forEach(function(item) {
+        html += '<div class="rm-item"><div class="rm-dot"></div><div class="rm-txt">' + item + '</div></div>';
+      });
+      html += '</div></div>';
+    });
+    html += '</div><div class="rm-foot"><div class="rm-foot-lbl">관련 키워드</div><div class="rm-tags">';
+    d.tags.forEach(function(tag) {
+      html += '<span class="rm-tag">' + tag + '</span>';
+    });
+    html += '</div></div>';
+    document.getElementById('rmContent').innerHTML = html;
+    document.getElementById('rmOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModalBtn() {
+    document.getElementById('rmOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('rmOverlay')) closeModalBtn();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModalBtn();
+  });
+
+  /*
+        { e:'📝', t:'게임 기획서 자동 초안 생성기', d:'장르·타겟·핵심 키워드 입력 → AI가 기획서 초안 작성. 기획 능력과 프롬프팅 실력을 동시에 키울 수 있음. 직접 기획 경험과 시너지 최고.', s:['JavaScript','AI API','Marked.js'], lv:'중급' },
+        { e:'🗓️', t:'AI 맞춤 학습 플랜 메이커', d:'목표 자격증·기술과 남은 일수를 입력하면 주간 학습 계획을 자동 생성. SQLD, 언리얼 엔진 등 실제 목표에 바로 적용 가능.', s:['JavaScript','AI API','LocalStorage'], lv:'초중급' },
+        { e:'💻', t:'AI 코드 리뷰 보조 도구', d:'코드를 붙여넣으면 잠재적 버그와 개선점을 AI가 찾아주는 미니 도구. 코드 품질 관리 감각을 빠르게 체득.', s:['JavaScript','AI API','Highlight.js'], lv:'중급' },
+        { e:'🎤', t:'AI 면접 답변 연습기', d:'직무와 예상 질문을 입력하면 AI가 모범 답변을 제시하고 내 답변을 평가해주는 앱. 취업 준비에 바로 활용 가능.', s:['JavaScript','AI API','CSS'], lv:'초중급' },
+        { e:'📄', t:'AI 포트폴리오 피드백 도구', d:'포트폴리오 내용을 붙여넣으면 AI가 강점·개선점을 분석하고 인사담당자 관점의 피드백을 제공.', s:['JavaScript','AI API','Markdown'], lv:'초중급' },
+      ],
+      '감정 & 멘탈케어': [
+        { e:'📔', t:'감정 일기 트래커', d:'매일 기분을 이모지+텍스트로 기록하고 주간·월간 감정 변화를 차트로 시각화. LocalStorage만으로 백엔드 없이 완성 가능.', s:['JavaScript','Chart.js','LocalStorage'], lv:'초급' },
+        { e:'🧘', t:'호흡 & 명상 타이머', d:'4-7-8 호흡, 박스 호흡 등 명상 루틴을 CSS 애니메이션 원으로 시각화. Web Audio API로 배경 소리까지 구현.', s:['CSS Animation','JavaScript','Web Audio API'], lv:'초중급' },
+        { e:'🩺', t:'스트레스 자가진단 앱', d:'10문항 설문으로 스트레스 레벨을 측정하고 결과에 따라 맞춤 해소법을 추천. 간단하지만 UX 설계 연습에 탁월.', s:['HTML','CSS','JavaScript'], lv:'초급' },
+        { e:'🌸', t:'긍정 일기 & 감사 기록 앱', d:'오늘 감사한 일 3가지를 매일 기록하는 앱. 달력 뷰로 돌아보기 가능. 꾸준함을 유도하는 스트릭 기능 포함.', s:['JavaScript','LocalStorage','CSS Calendar'], lv:'초급' },
+        { e:'🔋', t:'번아웃 체크리스트 앱', d:'번아웃 징후 항목을 체크해 위험도를 시각화하고 단계별 회복 루틴을 안내. 주기적으로 셀프 체크 유도.', s:['JavaScript','Chart.js','CSS'], lv:'초급' },
+      ],
+      '건강 & 자기관리': [
+        { e:'💪', t:'운동 루틴 스트릭 트래커', d:'주간 운동 계획을 세우고 매일 체크하는 앱. GitHub 잔디 방식으로 연속 달성일을 시각화해 동기부여.', s:['JavaScript','LocalStorage','CSS Grid'], lv:'초급' },
+        { e:'🌙', t:'수면 패턴 기록기', d:'취침·기상 시간을 기록하고 평균 수면 시간 및 주간 패턴을 차트 분석. 수면 빚 누적 계산 기능 포함.', s:['JavaScript','Chart.js','LocalStorage'], lv:'초급' },
+        { e:'📋', t:'건강 습관 통합 대시보드', d:'물 섭취·운동·수면·식단을 하나의 대시보드에서 관리. 습관 완료 시 게이미피케이션 포인트·배지 지급.', s:['JavaScript','LocalStorage','CSS'], lv:'초중급' },
+        { e:'💧', t:'수분 섭취 & 눈 휴식 알림 앱', d:'하루 목표 물 섭취량 추적 + 20-20-20 눈 휴식 타이머를 통합. Notification API로 브라우저 알림 구현.', s:['JavaScript','Notification API','CSS'], lv:'초급' },
+        { e:'🥗', t:'칼로리 & 영양소 계산기', d:'음식명을 입력하면 칼로리·탄단지를 표시하고 하루 섭취 목표 대비 현황을 도넛 차트로 시각화.', s:['JavaScript','음식 API','Chart.js'], lv:'초중급' },
+      ],
+      '게임 & QA': [
+        { e:'🐛', t:'버그 트래킹 미니 시스템', d:'Critical/Major/Minor 우선순위, Open/In Progress/Closed 상태로 버그를 관리하는 칸반 보드. 실무 QA 프로세스를 직접 구현하는 핵심 프로젝트.', s:['JavaScript','LocalStorage','CSS Kanban'], lv:'중급' },
+        { e:'📋', t:'QA 테스트케이스 생성기', d:'기능 설명 입력 → TC ID·사전조건·테스트 절차·기대결과 양식 자동 생성 + 엑셀 다운로드 지원. AI 연동 시 더욱 강력.', s:['JavaScript','SheetJS','AI API'], lv:'중급' },
+        { e:'📓', t:'게임 세션 QA 로그 앱', d:'게임별 플레이 세션·발견 버그·특이사항을 체계적으로 기록하는 QA 일지. 플레이 시간 추이 차트 포함.', s:['JavaScript','IndexedDB','Chart.js'], lv:'초중급' },
+        { e:'🔗', t:'테스트 체크리스트 URL 공유기', d:'게임 기능별 체크리스트를 만들고 URL 파라미터로 인코딩해 팀원과 공유. 백엔드 없이 구현 가능.', s:['JavaScript','URL Encoding','CSS'], lv:'중급' },
+        { e:'⚖️', t:'게임 밸런스 시뮬레이터', d:'캐릭터 스탯·스킬 수치를 입력하면 DPS·생존률을 계산해 밸런스 이슈를 시각화. 게임 기획 경험과 완벽한 시너지.', s:['JavaScript','Chart.js','CSS'], lv:'중급' },
+        { e:'📂', t:'QA 체크리스트 템플릿 라이브러리', d:'장르·플랫폼별 QA 체크리스트 템플릿을 저장하고 불러와 재사용하는 도구. 자신의 QA 노하우를 자산화.', s:['JavaScript','LocalStorage','CSS'], lv:'초중급' },
+      ],
+      '가성비 & 소비': [
+        { e:'💳', t:'가계부 & 지출 패턴 분석기', d:'수입·지출을 카테고리별로 기록하고 월별 소비 패턴을 파이·바 차트로 시각화. 예산 초과 경고 기능 포함.', s:['JavaScript','Chart.js','LocalStorage'], lv:'초급' },
+        { e:'📅', t:'구독 서비스 관리 대시보드', d:'넷플릭스·스포티파이 등 구독 서비스의 결제일·금액을 한눈에 관리. 월 총 지출 합산과 갱신 D-day 표시.', s:['JavaScript','LocalStorage','CSS'], lv:'초급' },
+        { e:'🏷️', t:'최저가 비교 메모장', d:'같은 제품의 쇼핑몰별 가격을 메모하고 최저가를 강조 표시. 여러 상품 비교 시 총 금액 자동 계산.', s:['JavaScript','LocalStorage','CSS'], lv:'초급' },
+        { e:'🎫', t:'할인 & 혜택 쿠폰 정리 앱', d:'쿠폰 정보와 유효기간을 등록하고 만료 임박 순으로 정렬. 카드 혜택도 함께 관리할 수 있는 절약 도우미.', s:['JavaScript','LocalStorage','CSS'], lv:'초급' },
+        { e:'⛔', t:'충동구매 방지 앱', d:'사고 싶은 물건을 등록하면 72시간 후에 알림을 보내 재검토하도록 유도. 소비 패턴 분석 기능 포함.', s:['JavaScript','LocalStorage','Notification API'], lv:'초급' },
+      ],
+      '1인 가구': [
+        { e:'🍳', t:'냉장고 재료 레시피 추천기', d:'가진 재료를 입력하면 1인분 레시피를 추천해주는 앱. AI API 연동 시 훨씬 다양한 레시피 제공 가능.', s:['JavaScript','AI API','CSS Card'], lv:'초중급' },
+        { e:'📋', t:'자취 생활 필수 체크리스트', d:'이사 준비·생활 필수품·월세 납부일·집안일 루틴을 카테고리별로 관리하는 자취 도우미 앱.', s:['JavaScript','LocalStorage','CSS'], lv:'초급' },
+        { e:'📊', t:'공과금 & 고정비 트래커', d:'월세·전기·수도·가스요금을 기록하고 월별 고정비 추이와 절약 목표를 함께 관리.', s:['JavaScript','Chart.js','LocalStorage'], lv:'초급' },
+        { e:'🗺️', t:'동네 편의시설 즐겨찾기 앱', d:'자주 가는 편의점·세탁소·병원 등을 등록하고 메모를 남기는 동네 지도 앱. Kakao/Naver 지도 API 연동 연습.', s:['JavaScript','지도 API','LocalStorage'], lv:'중급' },
+        { e:'🔧', t:'자취방 유지보수 체크리스트', d:'보일러 점검·방충망 교체 등 주기적 관리 항목을 등록하고 완료 알림을 받는 집 관리 앱.', s:['JavaScript','LocalStorage','Notification API'], lv:'초급' },
+        { e:'👨‍🍳', t:'1인분 식단 주간 플래너', d:'한 주 식단을 미리 계획하고 필요한 장보기 목록을 자동으로 생성. 식비 예산 관리 기능 포함.', s:['JavaScript','LocalStorage','CSS'], lv:'초급' },
+      ],
+      '데이터 & 분석': [
+        { e:'📈', t:'CSV 업로드 데이터 시각화 도구', d:'CSV 파일을 드래그앤드랍으로 올리면 자동으로 표와 차트를 생성. SQLD 공부와 병행하면 데이터 리터러시 급성장.', s:['JavaScript','PapaParse','Chart.js'], lv:'중급' },
+        { e:'🌿', t:'GitHub 활동 시각화 카드 생성기', d:'GitHub 사용자명을 입력하면 커밋 현황·언어 비율·레포 통계를 예쁜 카드로 시각화. GitHub API 연동 경험.', s:['JavaScript','GitHub API','Chart.js'], lv:'중급' },
+        { e:'👥', t:'포트폴리오 방문자 분석 대시보드', d:'GA4 데이터를 연동해 내 포트폴리오 방문자 통계를 직접 시각화. 이 포트폴리오에 직접 붙일 수 있음.', s:['JavaScript','GA4 API','Chart.js'], lv:'중상급' },
+        { e:'📉', t:'개인 생산성 데이터 시각화', d:'하루 집중 시간·완료 작업 수를 기록하고 주간 생산성 패턴을 차트로 분석. 공부 습관 개선에 직결.', s:['JavaScript','Chart.js','LocalStorage'], lv:'초중급' },
+        { e:'🎯', t:'게임 플레이 통계 분석기', d:'게임별 플레이 데이터(시간·성과·버그 수)를 입력하고 레이더 차트·히트맵으로 분석. QA 실무 데이터 감각 향상.', s:['JavaScript','Chart.js','LocalStorage'], lv:'중급' },
+        { e:'🔎', t:'텍스트 분석 & 워드클라우드 생성기', d:'긴 텍스트를 붙여넣으면 단어 빈도를 분석하고 워드클라우드를 생성. 버그 리포트 패턴 분석에도 활용 가능.', s:['JavaScript','wordcloud2.js','CSS'], lv:'중급' },
+      ],
+      '커뮤니티 & 소통': [
+        { e:'📝', t:'팀 회의록 관리 앱', d:'회의 날짜·참석자·안건·결정사항을 기록하고 검색·필터링하는 협업 툴. Markdown 작성 지원 포함.', s:['JavaScript','LocalStorage','Marked.js'], lv:'초중급' },
+        { e:'🎭', t:'익명 피드백 수집기', d:'링크 하나로 익명 피드백을 수집하고 관리자 페이지에서 모아보는 도구. Firebase 실시간 반영.', s:['JavaScript','Firebase','CSS'], lv:'중급' },
+        { e:'📌', t:'스터디 진척도 공유 보드', d:'스터디 목표와 각자 진행 상황을 시각화해 팀원과 공유하는 협업 앱. 동기부여 배지 시스템 포함.', s:['JavaScript','Firebase Realtime DB','CSS'], lv:'중급' },
+        { e:'🗳️', t:'아이디어 & 의사결정 투표 보드', d:'안건을 올리고 팀원이 링크로 접속해 투표. 실시간 결과를 막대 차트로 표시하는 빠른 의사결정 도구.', s:['JavaScript','Firebase','Chart.js'], lv:'중급' },
+        { e:'🤝', t:'팀 역할 분담 관리 앱', d:'프로젝트 태스크를 팀원에게 배분하고 진행 상태를 칸반 보드로 관리. 마감일 D-day 알림 포함.', s:['JavaScript','LocalStorage','CSS'], lv:'초중급' },
+        { e:'📣', t:'공지사항 & 뉴스레터 발송 미니 시스템', d:'이메일 리스트를 관리하고 간단한 뉴스레터를 작성·발송하는 도구. Email API 연동 경험.', s:['JavaScript','EmailJS','CSS'], lv:'중급' },
+      ],
+      '환경 & 지속가능성': [
+        { e:'🌍', t:'탄소발자국 계산기', d:'이동 수단·식단·에너지 사용량을 입력해 월간 탄소 발자국을 계산하고 절감 방법을 추천해주는 앱.', s:['JavaScript','Chart.js','CSS'], lv:'초급' },
+        { e:'♻️', t:'친환경 챌린지 앱', d:'텀블러 사용·대중교통 이용 등 친환경 행동을 매일 체크하고 배지를 획득하는 게이미피케이션 앱. 게임 개발 경험과 시너지.', s:['JavaScript','LocalStorage','CSS Animation'], lv:'초급' },
+        { e:'⚡', t:'절전 & 전기요금 절약 트래커', d:'가전제품별 예상 소비전력을 입력하고 월 전기요금을 시뮬레이션. 절약 목표 달성 시 배지 지급.', s:['JavaScript','LocalStorage','Chart.js'], lv:'초급' },
+        { e:'🥦', t:'채식 & 저탄소 식단 플래너', d:'탄소 배출이 적은 식재료 위주로 주간 식단을 구성하고 절감한 탄소량을 시각화.', s:['JavaScript','LocalStorage','CSS'], lv:'초급' },
+        { e:'🌊', t:'물 절약 챌린지 앱', d:'샤워 시간·설거지 횟수 등 물 사용 습관을 기록하고 절약량을 수영장 기준으로 환산해 시각화.', s:['JavaScript','LocalStorage','CSS'], lv:'초급' },
+      ],
+      '자기계발': [
+        { e:'🎯', t:'OKR 목표 설정 & 진척 트래커', d:'분기별 목표(O)와 핵심 결과(KR)를 설정하고 진척도를 프로그레스바로 관리. 자기관리 능력을 체계화하는 앱.', s:['JavaScript','LocalStorage','CSS'], lv:'초중급' },
+        { e:'📖', t:'독서 기록 & 인사이트 앱', d:'읽은 책과 핵심 인사이트를 기록하는 독서 관리 앱. 연간 목표 달성률과 장르 분포 차트 시각화.', s:['JavaScript','LocalStorage','Chart.js'], lv:'초급' },
+        { e:'🃏', t:'플래시카드 스페이싱 암기 앱', d:'SQLD 용어·영어 단어 등을 카드로 만들고 에빙하우스 망각곡선 기반 반복 학습. CSS 3D 카드 플립 구현.', s:['JavaScript','LocalStorage','CSS 3D Transform'], lv:'초중급' },
+        { e:'✍️', t:'AI 자기소개서 초안 생성기', d:'스킬·경험·목표를 입력하면 AI가 자기소개서 초안을 작성. 취업 준비에 즉시 활용 가능하고 포트폴리오 아이템으로도 손색없음.', s:['JavaScript','AI API','CSS'], lv:'초중급' },
+        { e:'🗺️', t:'기술 스택 로드맵 생성기', d:'배우고 싶은 기술 분야를 선택하면 단계별 학습 로드맵을 트리 형태로 시각화. 본인 성장 계획 수립에 바로 활용.', s:['JavaScript','D3.js','CSS'], lv:'중급' },
+        { e:'⏱️', t:'뽀모도로 & 집중 세션 기록기', d:'25분 집중 + 5분 휴식 타이머에 오늘 공부한 과목·내용을 기록. 주간 집중 시간 통계와 과목별 비율 차트 포함.', s:['JavaScript','LocalStorage','Web Audio API'], lv:'초급' },
+      ],
+    };
+
+    var chips = document.querySelectorAll('.kw-chip');
+    var genBtn = document.getElementById('genBtn');
+    var genStatus = document.getElementById('genStatus');
+    var grid = document.getElementById('ideasGrid');
+    var selected = new Set();
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var kw = chip.dataset.kw;
+        if (selected.has(kw)) { selected.delete(kw); chip.classList.remove('selected'); }
+        else                  { selected.add(kw);    chip.classList.add('selected'); }
+        var n = selected.size;
+        genBtn.disabled = n === 0;
+        genStatus.innerHTML = n === 0
+          ? '키워드를 1개 이상 선택하세요'
+          : '<b>' + n + '개</b> 키워드 선택됨 — 버튼을 눌러 아이디어를 생성하세요';
+      });
+    });
+
+    genBtn.addEventListener('click', function () {
+      var items = [];
+      selected.forEach(function (kw) {
+        (pool[kw] || []).forEach(function (idea) {
+          items.push(Object.assign({}, idea, { kw: kw }));
+        });
+      });
+      shuffle(items);
+
+      if (items.length < SHOW) {
+        var extra = [];
+        Object.keys(pool).filter(function (k) { return !selected.has(k); }).forEach(function (kw) {
+          (pool[kw] || []).forEach(function (idea) {
+            extra.push(Object.assign({}, idea, { kw: kw }));
+          });
+        });
+        shuffle(extra);
+        items = items.concat(extra.slice(0, SHOW - items.length));
+      }
+
+      render(items.slice(0, SHOW));
+    });
+
+    function shuffle(arr) {
+      for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+      }
+    }
+
+    function render(ideas) {
+      grid.innerHTML = '';
+      ideas.forEach(function (idea, i) {
+        var card = document.createElement('div');
+        card.className = 'idea-card';
+        card.style.animationDelay = (i * 0.05) + 's';
+        card.innerHTML =
+          '<div class="idea-card-header">' +
+            '<div class="idea-num">STUDY #' + String(i + 1).padStart(2, '0') + '</div>' +
+            '<div class="idea-emoji">' + idea.e + '</div>' +
+          '</div>' +
+          '<div class="idea-kw-badge">' + idea.kw + '</div>' +
+          '<div class="idea-title">' + idea.t + '</div>' +
+          '<div class="idea-desc">' + idea.d + '</div>' +
+          '<div class="idea-card-footer">' +
+            '<div class="idea-stack">' +
+              idea.s.map(function (tag) { return '<span class="idea-tag">' + tag + '</span>'; }).join('') +
+            '</div>' +
+            '<div class="idea-level">난이도 · ' + idea.lv + '</div>' +
+          '</div>';
+        grid.appendChild(card);
+      });
+  */
 </script>
 </body>
 </html>

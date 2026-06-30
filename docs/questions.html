@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>포트폴리오 자기소개 질문지</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+      background: #0f0f13;
+      color: #e2e2e2;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    header {
+      max-width: 800px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      color: #888;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .progress-bar-wrap {
+      max-width: 800px;
+      margin: 0 auto 32px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #2a2a35;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #6c63ff, #a78bfa);
+      border-radius: 99px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    .round-block {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      background: #17171f;
+      border: 1px solid #2a2a35;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .round-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 28px;
+      background: #1e1e28;
+      border-bottom: 1px solid #2a2a35;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .round-badge {
+      background: linear-gradient(135deg, #6c63ff, #a78bfa);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    .round-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      flex: 1;
+    }
+
+    .round-count {
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    .round-toggle {
+      font-size: 1rem;
+      color: #555;
+      transition: transform 0.2s;
+    }
+
+    .round-toggle.open { transform: rotate(180deg); }
+
+    .round-body {
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .question-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .question-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .q-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #6c63ff;
+      background: #1e1a3a;
+      padding: 2px 7px;
+      border-radius: 6px;
+      white-space: nowrap;
+      margin-top: 1px;
+    }
+
+    .q-text {
+      font-size: 0.92rem;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    textarea {
+      width: 100%;
+      background: #0f0f13;
+      border: 1px solid #2a2a35;
+      border-radius: 10px;
+      color: #e2e2e2;
+      font-size: 0.88rem;
+      font-family: inherit;
+      padding: 12px 14px;
+      resize: vertical;
+      min-height: 72px;
+      transition: border-color 0.2s;
+      line-height: 1.6;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #6c63ff;
+    }
+
+    textarea::placeholder { color: #3a3a4a; }
+
+    .actions {
+      max-width: 800px;
+      margin: 0 auto 60px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    button:active { transform: scale(0.97); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6c63ff, #a78bfa);
+      color: #fff;
+      flex: 1;
+    }
+
+    .btn-secondary {
+      background: #1e1e28;
+      color: #aaa;
+      border: 1px solid #2a2a35;
+    }
+
+    button:hover { opacity: 0.85; }
+
+    #output-section {
+      max-width: 800px;
+      margin: 0 auto 60px;
+      display: none;
+    }
+
+    #output-section h2 {
+      font-size: 1rem;
+      color: #888;
+      margin-bottom: 12px;
+    }
+
+    #output-text {
+      width: 100%;
+      background: #0f0f13;
+      border: 1px solid #2a2a35;
+      border-radius: 12px;
+      color: #ccc;
+      font-size: 0.8rem;
+      font-family: 'Consolas', monospace;
+      padding: 16px;
+      min-height: 200px;
+      resize: vertical;
+    }
+
+    .copy-btn {
+      margin-top: 10px;
+      background: #1e1e28;
+      color: #aaa;
+      border: 1px solid #2a2a35;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .notice {
+      max-width: 800px;
+      margin: 0 auto 32px;
+      background: #1a1a10;
+      border: 1px solid #3a3a20;
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 0.82rem;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    .notice strong { color: #c9b84c; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📋 포트폴리오 자기소개 질문지</h1>
+  <p>총 100개의 질문에 자유롭게 답해줘.<br/>모르거나 해당 없는 건 <strong>"없음"</strong> 또는 <strong>"해당없음"</strong>이라고 써도 돼.</p>
+</header>
+
+<div class="notice">
+  <strong>⚠️ 개인정보 주의:</strong> 이름, 학교명, 연락처, 주소 등 개인정보는 적지 마. 나중에 포트폴리오로 만들 때 자동으로 제외할게.
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-label">
+    <span>진행률</span>
+    <span id="progress-text">0 / 100</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<form id="questionnaire">
+
+  <!-- ROUND 1 -->
+  <div class="round-block">
+    <div class="round-header" onclick="toggleRound(this)">
+      <span class="round-badge">Round 1</span>
+      <span class="round-title">나는 어떤 사람인가? — 기본 정보</span>
+      <span class="round-count">Q1 ~ Q10</span>
+      <span class="round-toggle open">▲</span>
+    </div>
+    <div class="round-body">
+      <div class="question-item"><div class="question-label"><span class="q-num">Q1</span><span class="q-text">현재 학생이야, 아니면 직장인이야? (혹은 둘 다?)</span></div><textarea name="q1" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q2</span><span class="q-text">전공이나 주요로 공부하는 분야가 뭐야?</span></div><textarea name="q2" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q3</span><span class="q-text">개발자를 목표로 하고 있어, 아니면 다른 직군?</span></div><textarea name="q3" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q4</span><span class="q-text">지금까지 공부한 기간은 얼마나 됐어? (독학 포함)</span></div><textarea name="q4" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q5</span><span class="q-text">포트폴리오를 만들려는 이유가 뭐야? (취업? 진학? 자기표현?)</span></div><textarea name="q5" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q6</span><span class="q-text">이 포트폴리오를 주로 보게 될 대상이 누구라고 생각해? (기업 HR? 개발팀장? 교수님?)</span></div><textarea name="q6" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q7</span><span class="q-text">지금 자신의 실력을 스스로 평가하면 초급 / 중급 / 고급 중 어디야?</span></div><textarea name="q7" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q8</span><span class="q-text">혼자 작업하는 걸 좋아해, 아니면 팀 작업이 더 잘 맞아?</span></div><textarea name="q8" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q9</span><span class="q-text">지금까지 완성한 프로젝트가 있어? 있다면 몇 개 정도?</span></div><textarea name="q9" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q10</span><span class="q-text">포트폴리오에서 가장 강조하고 싶은 게 뭐야? (기술력? 성장 스토리? 창의성?)</span></div><textarea name="q10" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+    </div>
+  </div>
+
+  <!-- ROUND 2 -->
+  <div class="round-block">
+    <div class="round-header" onclick="toggleRound(this)">
+      <span class="round-badge">Round 2</span>
+      <span class="round-title">기술 스택 & 역량</span>
+      <span class="round-count">Q11 ~ Q20</span>
+      <span class="round-toggle open">▲</span>
+    </div>
+    <div class="round-body">
+      <div class="question-item"><div class="question-label"><span class="q-num">Q11</span><span class="q-text">가장 자신 있는 프로그래밍 언어는 뭐야?</span></div><textarea name="q11" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q12</span><span class="q-text">프론트엔드 / 백엔드 / 풀스택 중 어디에 더 관심 있어?</span></div><textarea name="q12" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q13</span><span class="q-text">사용해본 프레임워크나 라이브러리가 있어? 있다면 뭐야?</span></div><textarea name="q13" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q14</span><span class="q-text">데이터베이스 경험이 있어? 어떤 걸 써봤어?</span></div><textarea name="q14" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q15</span><span class="q-text">버전 관리(Git) 사용해봤어? 어느 정도로 써?</span></div><textarea name="q15" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q16</span><span class="q-text">클라우드(AWS, GCP, Azure 등) 사용 경험 있어?</span></div><textarea name="q16" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q17</span><span class="q-text">모바일 앱 개발 경험이 있어? (iOS, Android, Flutter 등)</span></div><textarea name="q17" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q18</span><span class="q-text">UI/UX 디자인에 관심이 있어? 툴(Figma 등) 써봤어?</span></div><textarea name="q18" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q19</span><span class="q-text">알고리즘/자료구조 공부를 해봤어? 코딩 테스트 준비 중이야?</span></div><textarea name="q19" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q20</span><span class="q-text">개발 외에 다른 기술적인 역량이 있어? (영상 편집, 그래픽 디자인, 3D 모델링 등)</span></div><textarea name="q20" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+    </div>
+  </div>
+
+  <!-- ROUND 3 -->
+  <div class="round-block">
+    <div class="round-header" onclick="toggleRound(this)">
+      <span class="round-badge">Round 3</span>
+      <span class="round-title">프로젝트 경험</span>
+      <span class="round-count">Q21 ~ Q30</span>
+      <span class="round-toggle open">▲</span>
+    </div>
+    <div class="round-body">
+      <div class="question-item"><div class="question-label"><span class="q-num">Q21</span><span class="q-text">가장 기억에 남는 프로젝트는 뭐야? (간단히 소개해줘)</span></div><textarea name="q21" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q22</span><span class="q-text">그 프로젝트를 만든 이유나 계기가 뭐야?</span></div><textarea name="q22" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q23</span><span class="q-text">그 프로젝트에서 네가 맡은 역할이 뭐야?</span></div><textarea name="q23" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q24</span><span class="q-text">프로젝트 중 가장 어려웠던 문제는 뭐야?</span></div><textarea name="q24" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q25</span><span class="q-text">그 문제를 어떻게 해결했어?</span></div><textarea name="q25" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q26</span><span class="q-text">그 프로젝트를 통해 배운 점이 뭐야?</span></div><textarea name="q26" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q27</span><span class="q-text">팀 프로젝트 경험이 있어? 몇 명이서 했어?</span></div><textarea name="q27" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q28</span><span class="q-text">프로젝트 결과물이 실제로 다른 사람에게 사용된 적 있어?</span></div><textarea name="q28" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q29</span><span class="q-text">오픈소스 기여 경험이 있어?</span></div><textarea name="q29" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q30</span><span class="q-text">아직 완성하지 못한 프로젝트가 있어? 있다면 이유가 뭐야?</span></div><textarea name="q30" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+    </div>
+  </div>
+
+  <!-- ROUND 4 -->
+  <div class="round-block">
+    <div class="round-header" onclick="toggleRound(this)">
+      <span class="round-badge">Round 4</span>
+      <span class="round-title">학습 방식 & 성장</span>
+      <span class="round-count">Q31 ~ Q40</span>
+      <span class="round-toggle open">▲</span>
+    </div>
+    <div class="round-body">
+      <div class="question-item"><div class="question-label"><span class="q-num">Q31</span><span class="q-text">주로 어떻게 공부해? (강의, 책, 블로그, 유튜브 등)</span></div><textarea name="q31" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q32</span><span class="q-text">가장 도움이 됐던 학습 자료나 강의가 있어?</span></div><textarea name="q32" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q33</span><span class="q-text">공부할 때 막히면 어떻게 해결해?</span></div><textarea name="q33" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q34</span><span class="q-text">매일 꾸준히 공부하는 편이야, 아니면 몰아서 하는 편이야?</span></div><textarea name="q34" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q35</span><span class="q-text">공부하면서 가장 힘들었던 시기가 있어?</span></div><textarea name="q35" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q36</span><span class="q-text">그 시기를 어떻게 극복했어?</span></div><textarea name="q36" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q37</span><span class="q-text">멘토나 롤모델이 있어?</span></div><textarea name="q37" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q38</span><span class="q-text">스터디, 해커톤, 부트캠프 등 커뮤니티 활동 경험이 있어?</span></div><textarea name="q38" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q39</span><span class="q-text">관련 자격증이나 수료증이 있어?</span></div><textarea name="q39" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q40</span><span class="q-text">앞으로 꼭 배우고 싶은 기술이나 분야가 있어?</span></div><textarea name="q40" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+    </div>
+  </div>
+
+  <!-- ROUND 5 -->
+  <div class="round-block">
+    <div class="round-header" onclick="toggleRound(this)">
+      <span class="round-badge">Round 5</span>
+      <span class="round-title">관심 분야 & 방향성</span>
+      <span class="round-count">Q41 ~ Q50</span>
+      <span class="round-toggle open">▲</span>
+    </div>
+    <div class="round-body">
+      <div class="question-item"><div class="question-label"><span class="q-num">Q41</span><span class="q-text">개발 분야 중 가장 관심 있는 건 뭐야? (AI, 게임, 웹, 앱, 보안 등)</span></div><textarea name="q41" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q42</span><span class="q-text">왜 그 분야에 관심이 생겼어?</span></div><textarea name="q42" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q43</span><span class="q-text">그 분야에서 해결하고 싶은 문제나 만들고 싶은 것이 있어?</span></div><textarea name="q43" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q44</span><span class="q-text">관심 있는 기업이나 서비스가 있어?</span></div><textarea name="q44" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q45</span><span class="q-text">그 기업/서비스의 어떤 점이 좋아?</span></div><textarea name="q45" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q46</span><span class="q-text">창업에 관심이 있어?</span></div><textarea name="q46" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q47</span><span class="q-text">프리랜서로 일하고 싶어, 아니면 회사 소속으로?</span></div><textarea name="q47" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q48</span><span class="q-text">국내에서 일하고 싶어, 아니면 해외도 고려해?</span></div><textarea name="q48" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q49</span><span class="q-text">개발 말고 다른 관심 있는 분야가 있어?</span></div><textarea name="q49" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q50</span><span class="q-text">기술로 사회에 기여하고 싶은 게 있어? (교육, 환경, 복지 등)</span></div><textarea name="q50" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+    </div>
+  </div>
+
+  <!-- ROUND 6 -->
+  <div class="round-block">
+    <div class="round-header" onclick="toggleRound(this)">
+      <span class="round-badge">Round 6</span>
+      <span class="round-title">성격 & 강점</span>
+      <span class="round-count">Q51 ~ Q60</span>
+      <span class="round-toggle open">▲</span>
+    </div>
+    <div class="round-body">
+      <div class="question-item"><div class="question-label"><span class="q-num">Q51</span><span class="q-text">자신의 가장 큰 강점이 뭐라고 생각해?</span></div><textarea name="q51" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q52</span><span class="q-text">자신의 가장 큰 약점이 뭐야?</span></div><textarea name="q52" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q53</span><span class="q-text">스트레스를 받을 때 어떻게 해소해?</span></div><textarea name="q53" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q54</span><span class="q-text">새로운 환경에 적응하는 편이야?</span></div><textarea name="q54" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q55</span><span class="q-text">피드백이나 비판을 받으면 어떻게 받아들여?</span></div><textarea name="q55" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q56</span><span class="q-text">완벽주의 성향이 있어, 아니면 빠르게 완성하는 타입?</span></div><textarea name="q56" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q57</span><span class="q-text">문제를 해결할 때 논리적으로 접근해, 아니면 직관적으로?</span></div><textarea name="q57" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q58</span><span class="q-text">리더 역할을 좋아해, 아니면 팔로워가 더 편해?</span></div><textarea name="q58" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q59</span><span class="q-text">다른 사람들이 너한테 자주 하는 말이 있어?</span></div><textarea name="q59" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q60</span><span class="q-text">지금까지 살면서 가장 자랑스러웠던 순간이 있어?</span></div><textarea name="q60" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+    </div>
+  </div>
+
+  <!-- ROUND 7 -->
+  <div class="round-block">
+    <div class="round-header" onclick="toggleRound(this)">
+      <span class="round-badge">Round 7</span>
+      <span class="round-title">경험 & 활동</span>
+      <span class="round-count">Q61 ~ Q70</span>
+      <span class="round-toggle open">▲</span>
+    </div>
+    <div class="round-body">
+      <div class="question-item"><div class="question-label"><span class="q-num">Q61</span><span class="q-text">학교나 학원 외 활동(동아리, 봉사 등)을 해본 적 있어?</span></div><textarea name="q61" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q62</span><span class="q-text">아르바이트나 인턴 경험이 있어?</span></div><textarea name="q62" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q63</span><span class="q-text">대회나 공모전에 참가해본 적 있어? 결과가 어땠어?</span></div><textarea name="q63" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q64</span><span class="q-text">블로그, 유튜브, SNS 등 콘텐츠를 만들어본 적 있어?</span></div><textarea name="q64" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q65</span><span class="q-text">GitHub 계정이 있어? 꾸준히 커밋하는 편이야?</span></div><textarea name="q65" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q66</span><span class="q-text">다른 사람에게 기술이나 공부를 가르쳐본 경험이 있어?</span></div><textarea name="q66" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q67</span><span class="q-text">팀에서 갈등이 생겼을 때 어떻게 해결했어?</span></div><textarea name="q67" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q68</span><span class="q-text">해외 경험이 있어? (여행, 어학연수, 교환학생 등)</span></div><textarea name="q68" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q69</span><span class="q-text">독서를 즐겨? 인상 깊었던 책이 있어?</span></div><textarea name="q69" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q70</span><span class="q-text">개발 관련 컨퍼런스, 밋업, 세미나에 참가해본 적 있어?</span></div><textarea name="q70" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+    </div>
+  </div>
+
+  <!-- ROUND 8 -->
+  <div class="round-block">
+    <div class="round-header" onclick="toggleRound(this)">
+      <span class="round-badge">Round 8</span>
+      <span class="round-title">가치관 & 철학</span>
+      <span class="round-count">Q71 ~ Q80</span>
+      <span class="round-toggle open">▲</span>
+    </div>
+    <div class="round-body">
+      <div class="question-item"><div class="question-label"><span class="q-num">Q71</span><span class="q-text">개발자로서 가장 중요하게 생각하는 가치가 뭐야?</span></div><textarea name="q71" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q72</span><span class="q-text">좋은 코드란 뭐라고 생각해?</span></div><textarea name="q72" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q73</span><span class="q-text">기술의 발전이 사회에 어떤 영향을 미친다고 생각해?</span></div><textarea name="q73" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q74</span><span class="q-text">협업할 때 가장 중요한 게 뭐라고 생각해?</span></div><textarea name="q74" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q75</span><span class="q-text">실패 경험에서 배운 것이 있어?</span></div><textarea name="q75" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q76</span><span class="q-text">돈(연봉)과 성장 중 어느 게 더 중요해?</span></div><textarea name="q76" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q77</span><span class="q-text">빠른 개발과 안정적인 개발 중 어느 게 더 중요하다고 생각해?</span></div><textarea name="q77" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q78</span><span class="q-text">기술 트렌드를 따라가는 게 중요하다고 생각해?</span></div><textarea name="q78" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q79</span><span class="q-text">AI가 개발자를 대체할 거라고 생각해? 어떻게 대비하고 있어?</span></div><textarea name="q79" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q80</span><span class="q-text">10년 후 자신은 어떤 모습이길 바라?</span></div><textarea name="q80" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+    </div>
+  </div>
+
+  <!-- ROUND 9 -->
+  <div class="round-block">
+    <div class="round-header" onclick="toggleRound(this)">
+      <span class="round-badge">Round 9</span>
+      <span class="round-title">미래 계획 & 목표</span>
+      <span class="round-count">Q81 ~ Q90</span>
+      <span class="round-toggle open">▲</span>
+    </div>
+    <div class="round-body">
+      <div class="question-item"><div class="question-label"><span class="q-num">Q81</span><span class="q-text">1년 안에 달성하고 싶은 목표가 있어?</span></div><textarea name="q81" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q82</span><span class="q-text">취업 또는 진학 목표 시기가 있어?</span></div><textarea name="q82" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q83</span><span class="q-text">희망하는 직무나 포지션이 있어?</span></div><textarea name="q83" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q84</span><span class="q-text">포트폴리오에 추가하고 싶은 프로젝트 아이디어가 있어?</span></div><textarea name="q84" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q85</span><span class="q-text">다음에 배울 기술이나 언어가 있어?</span></div><textarea name="q85" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q86</span><span class="q-text">사이드 프로젝트를 하고 싶어? 어떤 걸 만들고 싶어?</span></div><textarea name="q86" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q87</span><span class="q-text">꿈꾸는 최종 커리어 목표가 있어?</span></div><textarea name="q87" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q88</span><span class="q-text">그 목표를 위해 지금 가장 필요한 게 뭐야?</span></div><textarea name="q88" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q89</span><span class="q-text">포트폴리오 완성 후 어디에 올릴 예정이야? (GitHub Pages, 개인 도메인 등)</span></div><textarea name="q89" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q90</span><span class="q-text">이 포트폴리오로 보여주고 싶은 핵심 메시지가 뭐야?</span></div><textarea name="q90" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+    </div>
+  </div>
+
+  <!-- ROUND 10 -->
+  <div class="round-block">
+    <div class="round-header" onclick="toggleRound(this)">
+      <span class="round-badge">Round 10</span>
+      <span class="round-title">마무리 & 자기표현</span>
+      <span class="round-count">Q91 ~ Q100</span>
+      <span class="round-toggle open">▲</span>
+    </div>
+    <div class="round-body">
+      <div class="question-item"><div class="question-label"><span class="q-num">Q91</span><span class="q-text">자신을 한 문장으로 표현한다면?</span></div><textarea name="q91" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q92</span><span class="q-text">좋아하는 색깔이나 디자인 스타일이 있어?</span></div><textarea name="q92" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q93</span><span class="q-text">포트폴리오 톤앤매너는 어떻게 하고 싶어? (전문적, 친근함, 개성있게, 미니멀 등)</span></div><textarea name="q93" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q94</span><span class="q-text">좋아하는 개발자나 영향을 받은 사람이 있어?</span></div><textarea name="q94" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q95</span><span class="q-text">개발 말고 잘하는 것, 혹은 특이한 취미가 있어?</span></div><textarea name="q95" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q96</span><span class="q-text">자신을 나타내는 키워드 3가지를 골라봐.</span></div><textarea name="q96" placeholder="예: 끈기 있는 / 호기심 많은 / 꼼꼼한" oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q97</span><span class="q-text">포트폴리오 방문자에게 꼭 전하고 싶은 말이 있어?</span></div><textarea name="q97" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q98</span><span class="q-text">포트폴리오에 넣고 싶은 특별한 섹션이나 기능이 있어? (타임라인, 애니메이션 등)</span></div><textarea name="q98" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q99</span><span class="q-text">지금 이 순간 가장 하고 싶은 말이나 표현하고 싶은 게 있어?</span></div><textarea name="q99" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+      <div class="question-item"><div class="question-label"><span class="q-num">Q100</span><span class="q-text">이 포트폴리오를 완성하고 나면 어떤 기분일 것 같아?</span></div><textarea name="q100" placeholder="답변을 입력해줘..." oninput="updateProgress()"></textarea></div>
+    </div>
+  </div>
+
+</form>
+
+<div class="actions">
+  <button class="btn-primary" onclick="generateOutput()">답변 정리해서 내보내기 📋</button>
+  <button class="btn-secondary" onclick="clearAll()">전체 초기화</button>
+</div>
+
+<div id="output-section">
+  <h2>아래 내용을 전부 복사해서 나한테 붙여넣어줘!</h2>
+  <textarea id="output-text" readonly></textarea>
+  <button class="copy-btn" onclick="copyOutput()">클립보드에 복사 📋</button>
+</div>
+
+<script>
+  const QUESTIONS = {
+    q1: "현재 학생이야, 아니면 직장인이야?",
+    q2: "전공이나 주요로 공부하는 분야가 뭐야?",
+    q3: "개발자를 목표로 하고 있어, 아니면 다른 직군?",
+    q4: "지금까지 공부한 기간은 얼마나 됐어?",
+    q5: "포트폴리오를 만들려는 이유가 뭐야?",
+    q6: "포트폴리오를 주로 보게 될 대상이 누구야?",
+    q7: "자신의 실력을 스스로 평가하면 초급/중급/고급 중 어디야?",
+    q8: "혼자 작업 vs 팀 작업 중 어느 게 더 잘 맞아?",
+    q9: "지금까지 완성한 프로젝트가 있어? 몇 개?",
+    q10: "포트폴리오에서 가장 강조하고 싶은 게 뭐야?",
+    q11: "가장 자신 있는 프로그래밍 언어는?",
+    q12: "프론트엔드/백엔드/풀스택 중 관심 있는 건?",
+    q13: "사용해본 프레임워크나 라이브러리는?",
+    q14: "데이터베이스 경험은?",
+    q15: "Git 사용 경험은?",
+    q16: "클라우드 사용 경험은?",
+    q17: "모바일 앱 개발 경험은?",
+    q18: "UI/UX 디자인에 관심 있어?",
+    q19: "알고리즘/자료구조 공부해봤어?",
+    q20: "개발 외 다른 기술적인 역량은?",
+    q21: "가장 기억에 남는 프로젝트는?",
+    q22: "그 프로젝트를 만든 이유나 계기는?",
+    q23: "그 프로젝트에서 맡은 역할은?",
+    q24: "프로젝트 중 가장 어려웠던 문제는?",
+    q25: "그 문제를 어떻게 해결했어?",
+    q26: "그 프로젝트를 통해 배운 점은?",
+    q27: "팀 프로젝트 경험이 있어? 몇 명이서?",
+    q28: "프로젝트 결과물이 실제로 사용된 적 있어?",
+    q29: "오픈소스 기여 경험은?",
+    q30: "완성하지 못한 프로젝트가 있어? 이유는?",
+    q31: "주로 어떻게 공부해?",
+    q32: "가장 도움이 됐던 학습 자료나 강의는?",
+    q33: "공부할 때 막히면 어떻게 해결해?",
+    q34: "매일 공부 vs 몰아서 하는 편?",
+    q35: "공부하면서 가장 힘들었던 시기는?",
+    q36: "그 시기를 어떻게 극복했어?",
+    q37: "멘토나 롤모델이 있어?",
+    q38: "스터디/해커톤/부트캠프 등 커뮤니티 활동은?",
+    q39: "관련 자격증이나 수료증은?",
+    q40: "앞으로 꼭 배우고 싶은 기술은?",
+    q41: "가장 관심 있는 개발 분야는?",
+    q42: "왜 그 분야에 관심이 생겼어?",
+    q43: "그 분야에서 해결하고 싶은 문제나 만들고 싶은 것은?",
+    q44: "관심 있는 기업이나 서비스는?",
+    q45: "그 기업/서비스의 어떤 점이 좋아?",
+    q46: "창업에 관심이 있어?",
+    q47: "프리랜서 vs 회사 소속 중 어느 쪽?",
+    q48: "국내 vs 해외 중 어느 쪽에서 일하고 싶어?",
+    q49: "개발 말고 관심 있는 다른 분야는?",
+    q50: "기술로 사회에 기여하고 싶은 게 있어?",
+    q51: "자신의 가장 큰 강점은?",
+    q52: "자신의 가장 큰 약점은?",
+    q53: "스트레스 해소 방법은?",
+    q54: "새로운 환경에 적응하는 편이야?",
+    q55: "피드백/비판을 받으면 어떻게 받아들여?",
+    q56: "완벽주의 vs 빠른 완성 중 어느 타입?",
+    q57: "문제 해결할 때 논리적 vs 직관적 중 어느 쪽?",
+    q58: "리더 vs 팔로워 중 어느 역할이 더 편해?",
+    q59: "다른 사람들이 너한테 자주 하는 말은?",
+    q60: "지금까지 가장 자랑스러웠던 순간은?",
+    q61: "학교/학원 외 활동(동아리, 봉사 등)은?",
+    q62: "아르바이트나 인턴 경험은?",
+    q63: "대회나 공모전 참가 경험은?",
+    q64: "블로그/유튜브/SNS 등 콘텐츠 제작 경험은?",
+    q65: "GitHub 계정 있어? 꾸준히 커밋하는 편?",
+    q66: "다른 사람에게 기술을 가르쳐본 경험은?",
+    q67: "팀 갈등이 생겼을 때 어떻게 해결했어?",
+    q68: "해외 경험이 있어?",
+    q69: "독서를 즐겨? 인상 깊었던 책은?",
+    q70: "개발 관련 컨퍼런스/밋업 참가 경험은?",
+    q71: "개발자로서 가장 중요하게 생각하는 가치는?",
+    q72: "좋은 코드란 뭐라고 생각해?",
+    q73: "기술의 발전이 사회에 미치는 영향은?",
+    q74: "협업할 때 가장 중요한 건?",
+    q75: "실패 경험에서 배운 것은?",
+    q76: "돈(연봉) vs 성장 중 어느 게 더 중요해?",
+    q77: "빠른 개발 vs 안정적인 개발 중 어느 게 더 중요해?",
+    q78: "기술 트렌드를 따라가는 게 중요하다고 생각해?",
+    q79: "AI가 개발자를 대체할 거라고 생각해?",
+    q80: "10년 후 자신은 어떤 모습이길 바라?",
+    q81: "1년 안에 달성하고 싶은 목표는?",
+    q82: "취업 또는 진학 목표 시기는?",
+    q83: "희망하는 직무나 포지션은?",
+    q84: "포트폴리오에 추가하고 싶은 프로젝트 아이디어는?",
+    q85: "다음에 배울 기술이나 언어는?",
+    q86: "사이드 프로젝트를 하고 싶어? 어떤 걸 만들고 싶어?",
+    q87: "꿈꾸는 최종 커리어 목표는?",
+    q88: "그 목표를 위해 지금 가장 필요한 건?",
+    q89: "포트폴리오 완성 후 어디에 올릴 예정이야?",
+    q90: "이 포트폴리오의 핵심 메시지는?",
+    q91: "자신을 한 문장으로 표현한다면?",
+    q92: "좋아하는 색깔이나 디자인 스타일은?",
+    q93: "포트폴리오 톤앤매너는 어떻게 하고 싶어?",
+    q94: "좋아하는 개발자나 영향을 받은 사람은?",
+    q95: "개발 말고 잘하는 것, 혹은 특이한 취미는?",
+    q96: "자신을 나타내는 키워드 3가지는?",
+    q97: "포트폴리오 방문자에게 꼭 전하고 싶은 말은?",
+    q98: "포트폴리오에 넣고 싶은 특별한 섹션이나 기능은?",
+    q99: "지금 이 순간 가장 하고 싶은 말이나 표현하고 싶은 건?",
+    q100: "이 포트폴리오를 완성하고 나면 어떤 기분일 것 같아?"
+  };
+
+  function updateProgress() {
+    const form = document.getElementById('questionnaire');
+    const textareas = form.querySelectorAll('textarea');
+    let filled = 0;
+    textareas.forEach(t => { if (t.value.trim() !== '') filled++; });
+    const pct = Math.round((filled / 100) * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = filled + ' / 100';
+  }
+
+  function toggleRound(header) {
+    const body = header.nextElementSibling;
+    const toggle = header.querySelector('.round-toggle');
+    if (body.style.display === 'none') {
+      body.style.display = 'flex';
+      toggle.classList.add('open');
+    } else {
+      body.style.display = 'none';
+      toggle.classList.remove('open');
+    }
+  }
+
+  function generateOutput() {
+    const form = document.getElementById('questionnaire');
+    let output = '# 포트폴리오 질문지 답변\n\n';
+    for (let i = 1; i <= 100; i++) {
+      const key = 'q' + i;
+      const el = form.querySelector('[name="' + key + '"]');
+      const val = el ? el.value.trim() : '';
+      output += `## Q${i}. ${QUESTIONS[key]}\n`;
+      output += (val || '(미답변)') + '\n\n';
+    }
+    const outSection = document.getElementById('output-section');
+    const outText = document.getElementById('output-text');
+    outText.value = output;
+    outSection.style.display = 'block';
+    outSection.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function copyOutput() {
+    const outText = document.getElementById('output-text');
+    outText.select();
+    document.execCommand('copy');
+    alert('복사됐어! 이제 나한테 붙여넣기 해줘 😊');
+  }
+
+  function clearAll() {
+    if (!confirm('전체 답변을 초기화할까?')) return;
+    const form = document.getElementById('questionnaire');
+    form.querySelectorAll('textarea').forEach(t => t.value = '');
+    updateProgress();
+    document.getElementById('output-section').style.display = 'none';
+  }
+</script>
+</body>
+</html>
